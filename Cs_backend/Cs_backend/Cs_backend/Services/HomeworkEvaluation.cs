@@ -2,9 +2,9 @@ namespace Cs_backend.Services;
 
 public class HomeworkEvaluation
 {
-    //TODO
     public void EvaluateHomework()
     {
-        
+        //TODO - Requires ApplicationContext
+        throw new NotImplementedException();
     }
 }
