@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cs_backend.Models;
 
-public class TaskStatus(string name) : BaseModel
+public class TaskStatus : BaseModel
 {
-    public string Name { get; set; } = name;
+    public string Name { get; set; }
     public ICollection<SubmittedTask> SubmittedTasks { get; set; }
 }
 

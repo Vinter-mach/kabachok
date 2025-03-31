@@ -3,23 +3,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cs_backend.Models;
 
-public class Task(
-    string topic,
-    string taskLink,
-    DateOnly deadline,
-    string teacher,
-    bool isGrave,
-    Guid courseId,
-    Course course)
+public class Task
     : BaseModel
 {
-    public string Topic { get; set; } = topic;
-    public string TaskLink { get; set; } = taskLink;
-    public DateOnly Deadline { get; set; } = deadline;
-    public string Teacher { get; set; } = teacher;
-    public bool IsGrave { get; set; } = isGrave;
-    public Guid CourseId { get; set; } = courseId;
-    public Course Course { get; set; } = course;
+    public string Topic { get; set; }
+    public string TaskLink { get; set; }
+    public DateOnly Deadline { get; set; }
+    public string Teacher { get; set; }
+    public bool IsGrave { get; set; }
+    public int CourseId { get; set; }
+    public Course Course { get; set; }
     public ICollection<SubmittedTask> SubmittedTasks { get; set; }
 }
 

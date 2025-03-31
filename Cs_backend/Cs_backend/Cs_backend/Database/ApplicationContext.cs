@@ -1,26 +1,44 @@
 using Cs_backend.Models;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using Task = Cs_backend.Models.Task;
 using TaskStatus = Cs_backend.Models.TaskStatus;
 
 
 namespace Cs_backend.Database;
 
-public class ApplicationContext : DbContext
+public sealed class ApplicationContext : DbContext
 {
+    public ApplicationContext(string connectionString)
+    {
+        this.connectionString = connectionString;
+        Database.EnsureCreated();
+    }
+    private readonly string connectionString;
     public DbSet<Student> Students { get; set; }
     public DbSet<Course> Courses { get; set; }
     public DbSet<Group> Groups { get; set; }
     public DbSet<TaskStatus> Statuses { get; set; }
     public DbSet<SubmittedTask> SubmittedTasks { get; set; }
     public DbSet<Task> Tasks { get; set; }
-    public ApplicationContext(DbContextOptions<ApplicationContext> options)
-    {
-        throw new NotImplementedException();
-    }
+    public DbSet<Teacher> Teachers { get; set; }
+    public DbSet<TeacherCourse> TeacherCourses { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        var pgConnection = new NpgsqlConnection(connectionString);
+        optionsBuilder.UseNpgsql(pgConnection);
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        foreach (var entity in modelBuilder.Model.GetEntityTypes())
+        {
+            entity.SetTableName(ToSnakeCase(entity.GetTableName()));
+            foreach (var property in entity.GetProperties())
+            {
+                property.SetColumnName(ToSnakeCase(property.GetColumnName()));
+            }
+        }
         modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
         modelBuilder.Entity<Student>()
             .HasOne(x => x.Group)
@@ -40,5 +58,18 @@ public class ApplicationContext : DbContext
         modelBuilder.Entity<SubmittedTask>()
             .HasOne(x => x.Status)
             .WithMany(x => x.SubmittedTasks);
+        modelBuilder.Entity<TeacherCourse>()
+            .HasOne(tc => tc.Teacher)
+            .WithMany(t => t.TeacherCourses);
+        modelBuilder.Entity<TeacherCourse>()
+            .HasOne(tc => tc.Course)
+            .WithMany(c => c.TeacherCourses);
+    }
+    
+    private static string ToSnakeCase(string input)
+    {
+        return string.Concat(input.Select((c, i) => 
+                i > 0 && char.IsUpper(c) ? "_" + c.ToString() : c.ToString()))
+            .ToLower();
     }
 }

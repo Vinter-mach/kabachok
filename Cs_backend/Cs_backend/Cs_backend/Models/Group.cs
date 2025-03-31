@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cs_backend.Models;
 
-public class Group(string name) : BaseModel
+public class Group: BaseModel
 {
-    public string Name { get; set; } = name;
+    public string Name { get; set; }
     public ICollection<Student> Students { get; set; }
 }
 

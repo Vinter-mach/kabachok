@@ -3,29 +3,19 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cs_backend.Models;
 
-public class SubmittedTask(
-    Guid studentId,
-    Student student,
-    Guid taskId,
-    Task task,
-    Guid statusId,
-    TaskStatus status,
-    string homeworkLink,
-    DateOnly submittedDate,
-    int grade,
-    string comment)
+public class SubmittedTask
     : BaseModel
 {
-    public Guid StudentId { get; set; } = studentId;
-    public Student Student { get; set; } = student;
-    public Guid TaskId { get; set; } = taskId;
-    public Task Task { get; set; } = task;
-    public Guid StatusId { get; set; } = statusId;
-    public TaskStatus Status { get; set; } = status;
-    public string HomeworkLink { get; set; } = homeworkLink;
-    public DateOnly SubmittedDate { get; set; } = submittedDate;
-    public int Grade { get; set; } = grade;
-    public string Comment { get; set; } = comment;
+    public int StudentId { get; set; }
+    public Student Student { get; set; }
+    public int TaskId { get; set; }
+    public Task Task { get; set; }
+    public int StatusId { get; set; } 
+    public TaskStatus Status { get; set; }
+    public string HomeworkLink { get; set; }
+    public DateOnly SubmittedDate { get; set; } 
+    public int Grade { get; set; }
+    public string Comment { get; set; }
 }
 
 
