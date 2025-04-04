@@ -3,7 +3,6 @@ from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
 from tgBot.states.register import Register
 from tgBot.keyboards.reply import confirm_kb
-from tgBot.user import User, set_current_user, get_current_user, CURRENT_USER
 import re
 
 router = Router()
@@ -32,18 +31,17 @@ async def process_fullname(message: types.Message, state: FSMContext):
 async def confirm_data(message: types.Message, state: FSMContext):
     data = await state.get_data()
     if message.text.lower() == "да":
-        user = User(
+        await state.update_data(
             user_id=message.from_user.id,
             group=data["group"],
             full_name=data["fio"]
         )
-        set_current_user(user)
-        user = get_current_user()
-        await message.answer(f"Ну теперь скажи мне, "
-                             f"{user.full_name}, сосал?")
-        await state.clear()
+        await message.answer(f"Отлично, {data['fio']} из {data['group']}! Ты зарегистрирован.")
+        await state.set_state(None)
     elif message.text.lower() == "нет":
         await message.answer("Окей, попробуем еще раз. Введи снова:")
         await state.set_state(Register.waiting_for_fullname)
     else:
         await message.answer("Пожалуйста, выбери кнопку: Да или Нет.")
+
+

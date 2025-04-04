@@ -2,7 +2,7 @@ import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 from config import BOT_TOKEN
-from handlers import globalСommands, registration
+from handlers import globalСommands, registration, lesson
 
 
 async def main():
@@ -10,6 +10,7 @@ async def main():
     dp = Dispatcher(storage=MemoryStorage())
     dp.include_router(globalСommands.router)
     dp.include_router(registration.router)
+    dp.include_router(lesson.router)
     await dp.start_polling(bot)
 
 
