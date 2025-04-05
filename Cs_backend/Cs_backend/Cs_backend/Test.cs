@@ -21,18 +21,20 @@ public class ApplicationContextTests
     [Fact]
     public void ConnectionTest()
     {
-        using (var context = new ApplicationContext(connectionString))
+        var options = new DbContextOptionsBuilder<ApplicationContext>()
+            .UseNpgsql(connectionString) 
+            .Options;
+
+        using var context = new ApplicationContext(options);
+        try
         {
-            try
-            {
-                // Выполним простой SQL-запрос, проверяющий соединение
-                context.Database.OpenConnection();
-                context.Database.CloseConnection();
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail($"Не удалось подключиться к базе данных: {ex.Message}");
-            }
+            // Выполним простой SQL-запрос, проверяющий соединение
+            context.Database.OpenConnection();
+            context.Database.CloseConnection();
+        }
+        catch (Exception ex)
+        {
+            Assert.Fail($"Не удалось подключиться к базе данных: {ex.Message}");
         }
     }
 }

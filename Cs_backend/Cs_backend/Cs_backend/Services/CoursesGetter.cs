@@ -1,9 +1,23 @@
+using Cs_backend.Database;
+using Microsoft.EntityFrameworkCore;
+
 namespace Cs_backend.Services;
 
-public class CoursesGetter
+public class CoursesGetter(ApplicationContext context)
 {
-    public (int CourseId, string CourseName) GetCourses()
+    public async Task<List<CourseToJson>> GetCourses()
     {
-        throw new NotImplementedException();
+        var courses = await context.Courses.AsNoTracking().ToListAsync();
+        return courses.Select(course => new CourseToJson
+        {
+            CourseId = course.Id,
+            CourseName = course.Name
+        }).ToList();
     }
+}
+
+public class CourseToJson
+{
+    public int CourseId { get; set; }
+    public string CourseName { get; set; } = string.Empty;
 }

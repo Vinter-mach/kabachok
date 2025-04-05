@@ -4,9 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cs_backend.Controllers;
 
+
 [ApiController]
-[Route("[controller]")]
-public class MainController: ControllerBase
+[Route("")]
+public class MainController : ControllerBase
 {
-    //TODO - Requires Services
+    [HttpGet]
+    public IActionResult Get()
+    {
+        return Ok("Сервер работает!");
+    }
 }

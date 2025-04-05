@@ -9,12 +9,12 @@ namespace Cs_backend.Database;
 
 public sealed class ApplicationContext : DbContext
 {
-    public ApplicationContext(string connectionString)
+    public ApplicationContext(DbContextOptions<ApplicationContext> options)
+        : base(options)
     {
-        this.connectionString = connectionString;
         Database.EnsureCreated();
     }
-    private readonly string connectionString;
+    
     public DbSet<Student> Students { get; set; }
     public DbSet<Course> Courses { get; set; }
     public DbSet<Group> Groups { get; set; }
@@ -26,8 +26,10 @@ public sealed class ApplicationContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var pgConnection = new NpgsqlConnection(connectionString);
-        optionsBuilder.UseNpgsql(pgConnection);
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseNpgsql("User ID=postgres;Password=postgres;Host=localhost;Database=project");
+        }
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
