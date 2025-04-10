@@ -1,0 +1,369 @@
+openapi: 3.0.3
+info:
+  title: Homework Review API
+  version: 0.0.0
+  description: API
+
+servers:
+  - url: http://localhost:8000/api
+
+paths:
+  /auth:
+    post:
+      summary: Вход преподавателя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userName:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Успешный вход
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  authToken:
+                    type: string
+        '401':
+          description: Не успешный вход
+  
+  /courses:
+    get:
+      summary: Получить список доступных курсов
+      security:
+        - bearerAuth: [ ]
+      responses:
+        '200':
+          description: Список курсов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course'
+    post:
+      summary: Создать\Изменить курс
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course'
+      responses:
+        '201':
+          description: Курс создан
+        '400':
+          description: Некорректные данные
+        '401':
+          description: Не успешный вход
+        '403':
+          description: Нет прав
+
+  /courses/{courseId}:
+    get:
+      summary: Список всех тасков в курсе
+      parameters:
+        - in: path
+          name: courseId
+          required: true
+          schema:
+            type: integer
+      security:
+        - bearerAuth: [ ]
+      responses:
+        '200':
+          description: Список тасков
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+        '400':
+          description: Некорректные данные
+        '401':
+          description: Не успешный вход
+    
+    
+    
+    
+    post:
+      summary: Создать/Изменить таск в курсе
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '201':
+          description: Таск создан
+        '400':
+          description: Некорректные данные
+        '401':
+          description: Не успешный вход
+        '403':
+          description: Нет прав
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /courses/{courseId}/{TaskId}:
+    get:
+      summary: Задачи в таске
+      parameters:
+        - in: path
+          name: taskId
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: courseId
+          required: true
+          schema:
+            type: integer
+      security:
+        - bearerAuth: [ ]
+      responses:
+        '200':
+          description: Список задач
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Problem'
+        '400':
+          description: Некорректные данные
+        '401':
+          description: Не успешный вход
+        '403':
+          description: Нет прав
+    post:
+      summary: Создать/Изменить задачи
+      parameters:
+        - in: path
+          name: courseId
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: taskId
+          required: true
+          schema:
+            type: integer
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Problem'
+      responses:
+        '201':
+          description: Задача создана
+        '400':
+          description: Некорректные данные
+        '401':
+          description: Не успешный вход
+        '403':
+          description: Нет прав
+
+  /courses/{courseId}/{taskId}/submissions:
+    get:
+      summary: Получить отправленные работы по таску
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - in: path
+          name: taskId
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: courseId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Список отправок
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Submission'
+        '400':
+          description: Некорректные данные
+        '401':
+          description: Не успешный вход
+        '403':
+          description: Нет прав
+  
+  
+  /courses/{courseId}/{taskId}/submissions/{submissionId}:
+    get:
+      summary: Получить отправленную работу по таску
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - in: path
+          name: taskId
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: courseId
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: submissionId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Выбранное дз
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+        '400':
+          description: Некорректные данные
+        '401':
+          description: Не успешный вход
+        '403':
+          description: Нет прав
+    post:
+      summary: Оценить работу
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - in: path
+          name: courseId
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: taskId
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: submissionIdId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grade:
+                  type: integer
+                comment:
+                  type: string
+                statusId:
+                  type: integer
+      responses:
+        '200':
+          description: Работа проверена
+        '400':
+          description: Некорректные данные
+        '401':
+          description: Не успешный вход
+        '403':
+          description: Нет прав
+        422:
+          description: Что то пошло не так
+
+components:
+  schemas:
+    Course:
+      type: object
+      properties:
+        courseId:
+          type: integer
+        name:
+          type: string
+    
+    Task:
+      type: object
+      properties:
+        taskId:
+          type: integer
+        name:
+          type: string
+        number:
+          type: integer
+
+    Problem:
+      type: object
+      properties:
+        problemId:
+          type: integer
+        taskId:
+          type: integer
+        problems_link:
+          type: string
+        deadline:
+          type: string
+          format: date
+        teacher:
+          type: string
+        is_graves:
+          type: boolean
+
+    Submission:
+      type: object
+      properties:
+        id:
+          type: integer
+        studentId:
+          type: integer
+        problemId:
+          type: integer
+        statusId:
+          type: integer
+        homework_file:
+          type: string
+        date:
+          type: string
+          format: date
+        grade:
+          type: integer
+        comment:
+          type: string
+  
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
