@@ -3,6 +3,7 @@ using Cs_backend.Models;
 using Cs_backend.Repositories;
 using Cs_backend.Services;
 using Microsoft.EntityFrameworkCore;
+using Task = Cs_backend.Models.Task;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,10 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddScoped<CourseService>();
+builder.Services.AddScoped<TaskService>();
 builder.Services.AddScoped<IRepository<Course>, CourseRepository>();
+builder.Services.AddScoped<TaskRepository>();
+
 
 var app = builder.Build();
 

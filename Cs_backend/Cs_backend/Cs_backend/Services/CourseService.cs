@@ -1,3 +1,4 @@
+using Cs_backend.DTO;
 using Cs_backend.Models;
 using Cs_backend.Repositories;
 using Task = System.Threading.Tasks.Task;
@@ -11,19 +12,13 @@ public class CourseService(IRepository<Course> courseRepository)
         await courseRepository.AddOrUpdateAsync(course);
     }
 
-    public async Task<List<CourseToJson>> GetCourses()
+    public async Task<List<CourseDto>> GetCourses()
     {
         var courses = await courseRepository.GetAllAsync();
-        return courses.Select(course => new CourseToJson
+        return courses.Select(course => new CourseDto()
         {
             CourseId = course.Id,
-            CourseName = course.Name
+            Name = course.Name
         }).ToList();
     }
-}
-
-public class CourseToJson
-{
-    public int CourseId { get; set; }
-    public string CourseName { get; set; } = string.Empty;
 }

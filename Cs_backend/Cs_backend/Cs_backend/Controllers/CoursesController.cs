@@ -20,7 +20,6 @@ public class CoursesController(CourseService coursesService) : ControllerBase
     [HttpPost] 
     public async Task<IActionResult> AddOrUpdateCourse([FromBody] CourseDto dto)
     {
-        Console.WriteLine("DTO пришёл: " + dto?.Name);
         await coursesService.AddOrUpdateCourse(dto.ToCourse());
 
         return Ok(new { message = "Курс добавлен или обновлён" });
