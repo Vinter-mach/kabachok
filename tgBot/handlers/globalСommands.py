@@ -11,17 +11,16 @@ router = Router()
 @router.message(Command("help"))
 async def cmd_help(message: types.Message):
     await message.answer(
-        "Команды:\n"
-        "/help\n"
-        "/start\n"
-        "/get_lesson"
+        "/help\n - помощь"
+        "/start\n - регистрация"
+        "/get_lesson - посмотреть темы домашних заданий"
     )
 
 
 @router.message(Command("start"))
 async def cmd_start(message: types.Message, state: FSMContext):
     await message.answer(
-        "Привет! Отправь свою группу и ФИ в формате ФТ-20*-* Фамилия Имя, например, ФТ-203-1 Эшитов Радик"
+        "Привет! Отправь свою группу и ФИ в формате ФТ-20*-* Фамилия Имя, например, ФТ-203-1 Еценко Якатерина"
     )
     await state.set_state(Register.waiting_for_fullname)
 
