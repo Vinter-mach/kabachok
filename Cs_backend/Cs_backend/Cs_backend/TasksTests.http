@@ -1,0 +1,25 @@
+@Cs_backend_HostAddress = http://localhost:5249
+
+GET {{Cs_backend_HostAddress}}/courses/1
+Accept: application/json
+
+###
+
+POST {{Cs_backend_HostAddress}}/courses/1
+Content-Type: application/json
+
+{
+  "taskId": 3,
+  "name": "Test3",
+  "taskLink": "Test",
+  "deadline": "2019-08-24",
+  "teacher": "Test",
+  "isGraves": true
+}
+
+###
+
+GET {{Cs_backend_HostAddress}}/courses/1
+Accept: application/json
+
+###

@@ -20,7 +20,7 @@ public abstract class BaseRepository<T>(ApplicationContext applicationContext, D
 
     public async Task AddOrUpdateAsync(T entity)
     {
-        var existing = await applicationContext.Courses.FindAsync(entity.Id);
+        var existing = await dbSet.FindAsync(entity.Id);
         if (existing == null)
             dbSet.Add(entity);
         else
@@ -31,10 +31,10 @@ public abstract class BaseRepository<T>(ApplicationContext applicationContext, D
 
     public async void DeleteAsync(T entity)
     {
-        var existing = await applicationContext.Courses.FindAsync(entity.Id);
+        var existing = await dbSet.FindAsync(entity.Id);
         if (existing == null)
             return;
-        applicationContext.Courses.Remove(existing);
+        dbSet.Remove(existing);
         await applicationContext.SaveChangesAsync();
     }
 }

@@ -255,14 +255,14 @@ components:
           type: integer
         name:
           type: string
-        task_link:
+        taskLink:
           type: string
         deadline:
           type: string
           format: date
         teacher:
           type: string
-        is_graves:
+        isGraves:
           type: boolean
           
     Submission:
@@ -276,7 +276,7 @@ components:
           type: integer
         statusId:
           type: integer
-        homework_file:
+        homeworkFile:
           type: string
         date:
           type: string
