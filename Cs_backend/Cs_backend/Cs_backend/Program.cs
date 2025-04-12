@@ -15,19 +15,27 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
 });
-// builder.Services.AddControllers()
-//     .AddJsonOptions(options =>
-//     {
-//         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
-//     });
+
 builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddScoped<CourseService>();
 builder.Services.AddScoped<TaskService>();
+builder.Services.AddScoped<GroupService>();
+builder.Services.AddScoped<SubmissionService>();
+
 builder.Services.AddScoped<IRepository<Course>, CourseRepository>();
+builder.Services.AddScoped<IRepository<Group>, GroupRepository>();
 builder.Services.AddScoped<TaskRepository>();
+builder.Services.AddScoped<SubmissionRepository>();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+    });
+
 
 
 var app = builder.Build();

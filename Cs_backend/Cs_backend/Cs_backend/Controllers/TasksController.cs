@@ -23,6 +23,6 @@ public class TasksController(TaskService taskService) : ControllerBase
         var task = dto.ToTask();
         task.CourseId = courseId;
         await taskService.AddOrUpdateTask(task);
-        return Ok(new { message = "Курс добавлен или обновлён" });
+        return Ok(new { message = "Таск добавлен или обновлён" });
     }
 }
