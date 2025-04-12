@@ -2,7 +2,7 @@ from aiogram import Router, types
 from aiogram.fsm.context import FSMContext
 from tgBot.states.register import Lesson
 from tgBot.keyboards.reply import lesson_kb, lesson_action_kb
-from tgBot.database.db import lessons,  save_submission, get_submission
+from tgBot.database.db import lessons, save_submission, get_submission
 from aiogram import F
 
 router = Router()
@@ -16,15 +16,6 @@ async def choose_topic(message: types.Message, state: FSMContext):
         await message.answer(lessons[text], reply_markup=lesson_action_kb)
     else:
         await message.answer("Выбери тему:", reply_markup=lesson_kb)
-
-
-# @router.message(Lesson.after_topic)
-# async def after_topic(message: types.Message, state: FSMContext):
-#     if message.text in ["Отправить", "Посмотреть статус"]:
-#         await message.answer(f"Вы выбрали: {message.text}")
-#     else:
-#         await message.answer("Выбери тему:", reply_markup=lesson_kb)
-#         await state.set_state(Lesson.choosing_topic)
 
 
 @router.message(Lesson.after_topic, F.text.lower() == "отправить")
@@ -63,7 +54,8 @@ async def handle_pdf_upload(message: types.Message, state: FSMContext):
         filename=document.file_name
     )
 
-    await message.answer("Файл получен. Мы запомнили твою работу. Статус: на проверке.")
+    await message.answer(
+        "Файл получен. Мы запомнили твою работу. Статус: на проверке.")
     await state.set_state(Lesson.after_topic)
 
 

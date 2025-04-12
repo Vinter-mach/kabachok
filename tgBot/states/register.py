@@ -10,3 +10,8 @@ class Lesson(StatesGroup):
     choosing_topic = State()
     after_topic = State()
     waiting_for_file = State()
+
+
+class CourseSelect(StatesGroup):
+    waiting_for_course = State()
+
