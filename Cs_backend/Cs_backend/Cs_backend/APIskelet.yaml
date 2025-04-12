@@ -255,9 +255,16 @@ components:
           type: integer
         name:
           type: string
-        number:
-          type: integer
-
+        task_link:
+          type: string
+        deadline:
+          type: string
+          format: date
+        teacher:
+          type: string
+        is_graves:
+          type: boolean
+          
     Submission:
       type: object
       properties:

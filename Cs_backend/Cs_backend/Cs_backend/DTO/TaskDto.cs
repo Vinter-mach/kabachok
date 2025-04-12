@@ -6,7 +6,10 @@ public class TaskDto
 {
     public int TaskId { get; set; }
     public required string Name { get; set; }
-    public int Number { get; set; }
+    public required string TaskLink { get; set; }
+    public DateOnly Deadline { get; set; }
+    public required string Teacher { get; set; }
+    public bool IsGraves { get; set; }
 
     public Task ToTask()
     {
@@ -14,7 +17,10 @@ public class TaskDto
         {
             Topic = Name,
             Id = TaskId,
+            TaskLink = TaskLink,
+            Deadline = Deadline,
+            Teacher = Teacher,
+            IsGrave = IsGraves,
         };
-        // TODO - как будто тут сильные различия между полями Task и тем, что есть в API
     }
 }

@@ -19,7 +19,10 @@ public class TaskService(TaskRepository taskRepository)
         {
             TaskId = task.Id,
             Name = task.Topic,
-            Number = 0 // TODO - искренне не понимаю что это значит, так что будет пока 0))
+            TaskLink = task.TaskLink,
+            Deadline = task.Deadline,
+            Teacher = task.Teacher,
+            IsGraves = task.IsGrave,
         }).ToList();
     }
 }
