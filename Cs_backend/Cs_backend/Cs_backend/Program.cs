@@ -24,17 +24,19 @@ builder.Services.AddScoped<CourseService>();
 builder.Services.AddScoped<TaskService>();
 builder.Services.AddScoped<GroupService>();
 builder.Services.AddScoped<SubmissionService>();
+builder.Services.AddScoped<HomeworkService>();
 
 builder.Services.AddScoped<IRepository<Course>, CourseRepository>();
 builder.Services.AddScoped<IRepository<Group>, GroupRepository>();
 builder.Services.AddScoped<TaskRepository>();
 builder.Services.AddScoped<SubmissionRepository>();
+builder.Services.AddScoped<HomeworkRepository>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
-    });
+    }); // для русских букв в отображении, но можно будет убрать потом, просто вместо букв бутут \u9347 или типа того
 
 
 

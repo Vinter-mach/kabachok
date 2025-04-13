@@ -1,0 +1,407 @@
+GET http://localhost:5249/courses/1/1/submissions/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T195935.200.json
+
+###
+
+POST http://localhost:5249/courses/1/1/submissions/1
+Content-Type: application/json
+Content-Length: 88
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "grade": 3,
+  "comment": "красава! милый  котик",
+  "statusId": 1
+}
+
+<> 2025-04-13T195931.200.json
+
+###
+
+POST http://localhost:5249/courses/1/1/submissions/1
+Content-Type: application/json
+Content-Length: 88
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "grade": 3,
+  "comment": "красава! милый  котик",
+  "statusId": 1
+}
+
+<> 2025-04-13T195925.200.json
+
+###
+
+POST http://localhost:5249/courses/1/1/submissions/1
+Content-Type: application/json
+Content-Length: 88
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "grade": 3,
+  "comment": "красава! милый  котик",
+  "statusId": 1
+}
+
+<> 2025-04-13T195428.500.txt
+
+###
+
+POST http://localhost:5249/courses/1/1/submissions/1
+Content-Type: application/json
+Content-Length: 88
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "grade": 3,
+  "comment": "красава! милый  котик",
+  "statusId": 1
+}
+
+<> 2025-04-13T195329.500.txt
+
+###
+
+POST http://localhost:5249/courses/1/1/submissions/1
+Content-Type: application/json
+Content-Length: 88
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "grade": 3,
+  "comment": "красава! милый  котик",
+  "statusId": 1
+}
+
+<> 2025-04-13T195045.500.txt
+
+###
+
+POST http://localhost:5249/courses/1/1/submissions/1
+Content-Type: application/json
+Content-Length: 88
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "grade": 3,
+  "comment": "красава! милый  котик",
+  "statusId": 1
+}
+
+<> 2025-04-13T194841.500.txt
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T194832.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T194018.200.json
+
+###
+
+POST http://localhost:5249/courses/1/1/submissions/1
+Content-Type: application/json
+Content-Length: 88
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "grade": 3,
+  "comment": "красава! милый  котик",
+  "statusId": 1
+}
+
+<> 2025-04-13T193937.500.txt
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T193929.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T193921.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T193643.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T193635.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T193441.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T193232.200.json
+
+###
+
+POST http://localhost:5249/courses/1/1/submissions/1
+Content-Type: application/json
+Content-Length: 88
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "grade": 3,
+  "comment": "красава! милый  котик",
+  "statusId": 1
+}
+
+<> 2025-04-13T193221.500.txt
+
+###
+
+POST http://localhost:5249/courses/1/1/submissions/1
+Content-Type: application/json
+Content-Length: 88
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "grade": 3,
+  "comment": "красава! милый  котик",
+  "statusId": 1
+}
+
+<> 2025-04-13T193148.500.txt
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T193137.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T193105.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T193052.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions/0
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T193042.200.json
+
+###
+
+POST http://localhost:5249/courses/1/1/submissions/1
+Content-Type: application/json
+Content-Length: 88
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "grade": 3,
+  "comment": "красава! милый  котик",
+  "statusId": 1
+}
+
+<> 2025-04-13T193027.500.txt
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T193018.200.json
+
+###
+
+POST http://localhost:5249/courses/1/1/submissions/0
+Content-Type: application/json
+Content-Length: 88
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "grade": 3,
+  "comment": "красава! милый  котик",
+  "statusId": 1
+}
+
+<> 2025-04-13T192435.500.txt
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions/0
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T192429.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T192421.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T192100.200.json
+
+###
+
+GET http://localhost:5249/courses/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T183751.200.json
+
+###
+
+POST http://localhost:5249/courses/1
+Content-Type: application/json
+Content-Length: 127
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "taskId": 3,
+  "name": "Test3",
+  "taskLink": "Test",
+  "deadline": "2019-08-24",
+  "teacher": "Test",
+  "isGraves": true
+}
+
+<> 2025-04-13T183746.200.json
+
+###
+
+GET http://localhost:5249/courses/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T183735.200.json
+
+###
+
+GET http://localhost:5249/courses/
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T183631.200.json
+
+###
+

@@ -253,3 +253,4 @@ C:\Users\Катя\Desktop\projects\kabachok\Cs_backend\Cs_backend\Cs_backend\obj
 C:\Users\Катя\Desktop\projects\kabachok\Cs_backend\Cs_backend\Cs_backend\obj\Debug\net9.0\Cs_backend.pdb
 C:\Users\Катя\Desktop\projects\kabachok\Cs_backend\Cs_backend\Cs_backend\obj\Debug\net9.0\Cs_backend.genruntimeconfig.cache
 C:\Users\Катя\Desktop\projects\kabachok\Cs_backend\Cs_backend\Cs_backend\obj\Debug\net9.0\ref\Cs_backend.dll
+C:\Users\Катя\Desktop\projects\kabachok\Cs_backend\Cs_backend\Cs_backend\bin\Debug\net9.0\http-client.env.json

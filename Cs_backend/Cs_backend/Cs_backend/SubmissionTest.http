@@ -1,0 +1,27 @@
+### environment: dev
+
+GET {{Cs_backend_HostAddress}}/courses/1/1/submissions
+Accept: application/json
+
+###
+
+GET {{Cs_backend_HostAddress}}/courses/1/1/submissions/1
+Accept: application/json
+
+###
+
+POST {{Cs_backend_HostAddress}}/courses/1/1/submissions/1
+Content-Type: application/json
+
+{
+  "grade": 3,
+  "comment": "красава! милый  котик",
+  "statusId": 1
+}
+
+###
+
+GET {{Cs_backend_HostAddress}}/courses/1/1/submissions/1
+Accept: application/json
+
+###

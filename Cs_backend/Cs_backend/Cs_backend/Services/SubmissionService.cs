@@ -17,7 +17,8 @@ public class SubmissionService(SubmissionRepository submissionRepository)
         var tasks = await submissionRepository.GetSubmissionsByTaskId(taskId);
         return tasks.Select(task => new SubmissionDto()
         {
-            TaskId = task.Id,
+            SubmissionId = task.Id,
+            TaskId = task.TaskId,
             StudentId = task.StudentId,
             StatusId = task.StatusId,
             homeworkFile = task.HomeworkLink,
