@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Homework Review API
-  version: 0.0.0
+  version: 0.0.1
   description: API
 
 servers:
@@ -149,11 +149,35 @@ paths:
         '401':
           description: Не успешный вход
         '403':
+          description: Нет прав        
+          
+          
+  /groups/{groupId}:
+    get:
+      summary: Получить всех студентов в группе
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - in: path
+          name: groupId
+          required: true
+          schema: 
+            type: integer
+      responses: 
+        '200':
+          description: Список студентов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+        '400':
+          description: Некорректные данные
+        '401':
+          description: Не успешный вход
+        '403':
           description: Нет прав
-          
-          
-          
-  /groups/addStudent:
     post:
       summary: добавить студента
       security:
@@ -173,6 +197,7 @@ paths:
           description: Не успешный вход
         '403':
           description: Нет прав
+  
   
   
   /courses/{courseId}/{taskId}/submissions:
@@ -354,6 +379,8 @@ components:
           type: integer
         tgUserName:
           type: string
+        courseId:
+          type: integer
 
   securitySchemes:
     bearerAuth:

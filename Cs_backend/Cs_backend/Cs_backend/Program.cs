@@ -25,12 +25,14 @@ builder.Services.AddScoped<TaskService>();
 builder.Services.AddScoped<GroupService>();
 builder.Services.AddScoped<SubmissionService>();
 builder.Services.AddScoped<HomeworkService>();
+builder.Services.AddScoped<StudentService>();
 
 builder.Services.AddScoped<IRepository<Course>, CourseRepository>();
 builder.Services.AddScoped<IRepository<Group>, GroupRepository>();
 builder.Services.AddScoped<TaskRepository>();
 builder.Services.AddScoped<SubmissionRepository>();
 builder.Services.AddScoped<HomeworkRepository>();
+builder.Services.AddScoped<StudentRepository>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>

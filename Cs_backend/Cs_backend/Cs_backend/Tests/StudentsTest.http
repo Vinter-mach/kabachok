@@ -1,0 +1,22 @@
+### environment: dev
+
+GET {{Cs_backend_HostAddress}}/groups/1
+Accept: application/json
+
+###
+
+POST {{Cs_backend_HostAddress}}/groups/1
+Content-Type: application/json
+
+{
+  "name": "радик эшитов2",
+  "tgUserName": "@123",
+  "courseId": 1
+}
+
+###
+
+GET {{Cs_backend_HostAddress}}/groups/1
+Accept: application/json
+
+###

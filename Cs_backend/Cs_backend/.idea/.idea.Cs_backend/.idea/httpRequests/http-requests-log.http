@@ -1,3 +1,151 @@
+GET http://localhost:5249/groups/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T210659.200.json
+
+###
+
+POST http://localhost:5249/groups/1
+Content-Type: application/json
+Content-Length: 81
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "радик эшитов2",
+  "tgUserName": "@123",
+  "courseId": 1
+}
+
+<> 2025-04-13T210656.200.json
+
+###
+
+GET http://localhost:5249/groups/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T210633.200.json
+
+###
+
+POST http://localhost:5249/groups/1
+Content-Type: application/json
+Content-Length: 80
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "радик эшитов",
+  "tgUserName": "@123",
+  "courseId": 1
+}
+
+<> 2025-04-13T210630.200.json
+
+###
+
+POST http://localhost:5249/groups/1
+Content-Type: application/json
+Content-Length: 63
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "радик эшитов",
+  "tgUserName": "@123"
+}
+
+<> 2025-04-13T210217.500.txt
+
+###
+
+GET http://localhost:5249/groups/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T210203.200.json
+
+###
+
+POST http://localhost:5249/groups/1
+Content-Type: application/json
+Content-Length: 63
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "радик эшитов",
+  "tgUserName": "@123"
+}
+
+<> 2025-04-13T205236.500.txt
+
+###
+
+POST http://localhost:5249/groups/1
+Content-Type: application/json
+Content-Length: 63
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "радик эшитов",
+  "tgUserName": "@123"
+}
+
+<> 2025-04-13T205222.400.json
+
+###
+
+GET http://localhost:5249/groups/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T205156.200.json
+
+###
+
+POST http://localhost:5249/groups/1
+Content-Type: application/json
+Content-Length: 63
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "радик эшитов",
+  "tgUserName": "@123"
+}
+
+<> 2025-04-13T205135.400.json
+
+###
+
+GET http://localhost:5249/groups/1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-04-13T205005.200.json
+
+###
+
 GET http://localhost:5249/courses/1/1/submissions/1
 Accept: application/json
 Connection: Keep-Alive
