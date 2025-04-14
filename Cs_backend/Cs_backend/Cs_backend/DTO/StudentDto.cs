@@ -26,6 +26,7 @@ public class StudentDto : ICastable<Student>
         Name = Name,
         GroupId = GroupId,
         TelegramId = GetTgIdFromUserName(),
-        CourseId = CourseId
+        CourseId = CourseId,
+        // Тут нужно вроде добавить TgName или что-то такое, но у нас в базе такого поля нет))
     };
 }

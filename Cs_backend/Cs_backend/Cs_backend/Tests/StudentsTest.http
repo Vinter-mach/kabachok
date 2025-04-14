@@ -13,9 +13,9 @@ Content-Type: application/json
 {
   "studentId": 0,
   "name": "Test",
-  "groupId": 0,
+  "groupId": 1,
   "tgUserName": "Test",
-  "courseId": 0
+  "courseId": 1
 }
 
 ###
