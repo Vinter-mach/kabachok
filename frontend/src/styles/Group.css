@@ -65,3 +65,24 @@ body {
   color: #666666;
   cursor: default;
 }
+
+.back-button-fixed {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #d8c9eb;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  z-index: 1000;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.back-button-fixed:hover {
+  background-color: #c4b6d6;
+}
