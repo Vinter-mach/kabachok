@@ -1,5 +1,7 @@
 ### environment: dev
 
+@Cs_backend_HostAddress = http://localhost:5249
+
 GET {{Cs_backend_HostAddress}}/courses/
 Accept: application/json
 
@@ -9,8 +11,8 @@ POST {{Cs_backend_HostAddress}}/courses/
 Content-Type: application/json
 
 {
-  "courseId": 1,
-  "name": "Test3"
+  "courseId": 0,
+  "name": "Test5"
 }
 
 ###

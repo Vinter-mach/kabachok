@@ -8,8 +8,4 @@ namespace Cs_backend.Repositories;
 public class SubmissionRepository(ApplicationContext applicationContext)
     : BaseRepository<SubmittedTask>(applicationContext, applicationContext.SubmittedTasks)
 {
-    public async Task<List<SubmittedTask>> GetSubmissionsByTaskId(int taskId)
-    {
-        return await applicationContext.SubmittedTasks.AsNoTracking().Where(t => t.TaskId == taskId).ToListAsync();
-    }
 }

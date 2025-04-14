@@ -1,8 +1,9 @@
+using Cs_backend.Interfaces;
 using Cs_backend.Models;
 
 namespace Cs_backend.DTO;
 
-public class SubmissionDto
+public class SubmissionDto : ICastable<SubmittedTask>
 {
     public int SubmissionId { get; set; }
     public int StudentId { get; set; }
@@ -13,7 +14,7 @@ public class SubmissionDto
     public int Grade { get; set; }
     public string Comment { get; set; }
 
-    public SubmittedTask ToSubmittedTask()
+    public SubmittedTask Cast()
     {
         return new SubmittedTask()
         {

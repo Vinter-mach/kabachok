@@ -18,7 +18,7 @@ public class TasksController(TaskService taskService) : ControllerBase
     [HttpPost("")]
     public async Task<IActionResult> AddOrUpdateTask(int courseId, [FromBody] TaskDto dto)
     {
-        var task = dto.ToTask();
+        var task = dto.Cast();
         task.CourseId = courseId;
         await taskService.AddOrUpdateTask(task);
         return Ok(new { message = "Таск добавлен или обновлён" });

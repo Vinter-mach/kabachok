@@ -1,5 +1,151 @@
 GET http://localhost:5249/groups/1
 Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-14T145417-1.200.json
+
+###
+
+POST http://localhost:5249/groups/1
+Content-Type: application/json
+Content-Length: 81
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "name": "радик эшитов2",
+  "tgUserName": "@123",
+  "courseId": 1
+}
+
+<> 2025-04-14T145417.500.txt
+
+###
+
+GET http://localhost:5249/groups/1
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-14T145417.200.json
+
+###
+
+GET http://localhost:5249/groups/1
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-14T144214-1.500.txt
+
+###
+
+POST http://localhost:5249/groups/1
+Content-Type: application/json
+Content-Length: 81
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "name": "радик эшитов2",
+  "tgUserName": "@123",
+  "courseId": 1
+}
+
+<> 2025-04-14T144214.500.txt
+
+###
+
+GET http://localhost:5249/groups/1
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-14T144213.500.txt
+
+###
+
+GET http://localhost:5249/courses/
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-14T144150-2.200.json
+
+###
+
+POST http://localhost:5249/courses/
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "courseId": 0,
+  "name": "Test5"
+}
+
+<> 2025-04-14T144150-1.200.json
+
+###
+
+GET http://localhost:5249/courses/
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-14T144150.200.json
+
+###
+
+GET http://localhost:5249/courses/
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-14T144130-1.200.json
+
+###
+
+POST http://localhost:5249/courses/
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "courseId": 1,
+  "name": "Test3"
+}
+
+<> 2025-04-14T144130.200.json
+
+###
+
+GET http://localhost:5249/courses/
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-14T144129.200.json
+
+###
+
+GET http://localhost:5249/groups/1
+Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
 Accept-Encoding: br,deflate,gzip,x-gzip
@@ -490,66 +636,6 @@ User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 <> 2025-04-13T192421.200.json
-
-###
-
-GET http://localhost:5249/courses/1/1/submissions
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-04-13T192100.200.json
-
-###
-
-GET http://localhost:5249/courses/1
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-04-13T183751.200.json
-
-###
-
-POST http://localhost:5249/courses/1
-Content-Type: application/json
-Content-Length: 127
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "taskId": 3,
-  "name": "Test3",
-  "taskLink": "Test",
-  "deadline": "2019-08-24",
-  "teacher": "Test",
-  "isGraves": true
-}
-
-<> 2025-04-13T183746.200.json
-
-###
-
-GET http://localhost:5249/courses/1
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-04-13T183735.200.json
-
-###
-
-GET http://localhost:5249/courses/
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-04-13T183631.200.json
 
 ###
 

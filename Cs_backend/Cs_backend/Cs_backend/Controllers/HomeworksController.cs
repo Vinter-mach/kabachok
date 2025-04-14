@@ -17,7 +17,7 @@ public class HomeworkController(HomeworkService homeworkService) : ControllerBas
     [HttpPost("")]
     public async Task<IActionResult> AddOrUpdateSubmission(int courseId, int taskId, int submissionId, [FromBody] SubmissionDto dto)
     {
-        var submittedTask = dto.ToSubmittedTask();
+        var submittedTask = dto.Cast();
         submittedTask.Id = submissionId;
         await homeworkService.AddOrUpdateSubmission(submittedTask);
         return Ok(new { message = "Дз успешно проверено" });

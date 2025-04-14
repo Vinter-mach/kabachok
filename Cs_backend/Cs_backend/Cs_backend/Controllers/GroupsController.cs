@@ -20,7 +20,7 @@ public class CroupController(GroupService groupService) : ControllerBase
     [HttpPost] 
     public async Task<IActionResult> AddOrUpdateCourse([FromBody] GroupDto dto)
     {
-        await groupService.AddOrUpdateGroup(dto.ToGroup());
+        await groupService.AddOrUpdateGroup(dto.Cast());
 
         return Ok(new { message = "Группа добавлена или обновлёна" });
     }

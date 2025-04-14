@@ -1,27 +1,20 @@
 using Cs_backend.DTO;
 using Cs_backend.Models;
 using Cs_backend.Repositories;
+using Cs_backend.Services.BaseServices;
 using Task = System.Threading.Tasks.Task;
 
 namespace Cs_backend.Services;
 
-public class StudentService(StudentRepository submissionRepository)
+public class StudentService(StudentRepository studentRepository)
 {
     public async Task AddOrUpdateStudent(Student student)
     {
-        await submissionRepository.AddOrUpdateAsync(student);
+        await studentRepository.AddOrUpdateAsync(student);
     }
 
     public async Task<List<StudentDto>> GetStudentsByGroupId(int groupId)
     {
-        var students = await submissionRepository.GetStudentsByGroupId(groupId);
-        return students.Select(student => new StudentDto
-        {
-            StudentId = student.Id,
-            Name = student.Name,
-            GroupId = student.GroupId,
-            TgId = student.TelegramId,
-            CourseId = student.CourseId
-        }).ToList();
+        return await GetterByFunc.GetByFunc<Student, StudentDto>(studentRepository, x => x.GroupId == groupId);
     }
 }
