@@ -8,7 +8,7 @@ namespace Cs_backend.Services;
 
 public class HomeworkService(HomeworkRepository homeworkRepository)
 {
-    public async System.Threading.Tasks.Task AddOrUpdateSubmission(SubmittedTask task)
+    public async System.Threading.Tasks.Task UpdateSubmission(SubmittedTask task)
     {
         await homeworkRepository.UpdateAsync(task);
     }

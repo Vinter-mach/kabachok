@@ -19,7 +19,7 @@ public class HomeworkController(HomeworkService homeworkService) : ControllerBas
     {
         var submittedTask = dto.Cast();
         submittedTask.Id = submissionId;
-        await homeworkService.AddOrUpdateSubmission(submittedTask);
+        await homeworkService.UpdateSubmission(submittedTask);
         return Ok(new { message = "Дз успешно проверено" });
     }
 }

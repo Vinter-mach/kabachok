@@ -11,7 +11,7 @@ POST {{Cs_backend_HostAddress}}/courses/
 Content-Type: application/json
 
 {
-  "courseId": 0,
+  "courseId": 1,
   "name": "Test5"
 }
 
