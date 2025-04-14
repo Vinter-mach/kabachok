@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/Group.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,10 +7,48 @@ function Group() {
     const [selectedGroup, setSelectedGroup] = useState('');
     const [studentName, setStudentName] = useState('');
     const [telegramTag, setTelegramTag] = useState('');
+    const [groups, setGroups] = useState([]);
     const navigate = useNavigate();
 
-    const handleGroupAdd = () => {
-        console.log('Добавляем группу:', { groupInput });
+    useEffect(() => {
+        const fetchGroups = async () => {
+            try {
+                const response = await fetch('http://localhost:5249/groups/');
+                if (!response.ok) {
+                    throw new Error('Ошибка при получении групп');
+                }
+                const data = await response.json();
+                setGroups(data);
+                console.log('Группы:', data);
+            } catch (error) {
+                console.error('Ошибка:', error);
+            }
+        };
+
+        fetchGroups();
+    }, []);
+
+    const handleGroupAdd = async () => {
+        try {
+            const response = await fetch('http://localhost:5249/groups/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: groupInput }),
+            });
+    
+            if (!response.ok) {
+                throw new Error('Ошибка при добавлении группы');
+            }
+    
+            const newGroup = await response.json();
+            setGroups([...groups, newGroup]);
+            setGroupInput('');
+            console.log('Группа добавлена:', newGroup);
+        } catch (error) {
+            console.error('Ошибка:', error);
+        }
     };
 
     const handleStudentSave = () => {
@@ -55,10 +93,11 @@ function Group() {
                         onChange={(e) => setSelectedGroup(e.target.value)}
                     >
                         <option value="">Выберите группу</option>
-                        <option value="ft-201">ФТ-201</option>
-                        <option value="ft-202">ФТ-202</option>
-                        <option value="ft-203">ФТ-203</option>
-                        <option value="ft-204">ФТ-204</option>
+                        {groups.map((group, index) => (
+                            <option key={index} value={group.name}>
+                                {group.name}
+                            </option>
+                        ))}
                     </select>
 
                     <input
