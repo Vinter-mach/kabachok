@@ -31,3 +31,11 @@ lesson_action_kb = ReplyKeyboardMarkup(
     ],
     resize_keyboard=True
 )
+
+send_or_select_topic = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text="Выбрать другую тему")],
+        [KeyboardButton(text="Отправить задание")]
+    ],
+    resize_keyboard=True
+)

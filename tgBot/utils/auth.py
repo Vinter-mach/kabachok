@@ -42,7 +42,6 @@ async def get_or_load_user_from_db(state: FSMContext, message: Message) -> bool:
     await state.update_data(
         fio=student.name,
         group_id=student.group_id,
-        course_id=student.course_id,
         user_id=message.from_user.id
     )
     return True
