@@ -1,4 +1,5 @@
-from tgBot.database.request import get_student_by_telegram_id
+from tgBot.database.request import get_student_by_telegram_id, \
+    get_student_id_by_telegram_id
 from aiogram import BaseMiddleware
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
@@ -19,7 +20,8 @@ class AuthMiddleware(BaseMiddleware):
             await message.answer(
                 "У вас нет доступа к боту. Обратитесь к преподавателю.")
             return
-
+        student_id = await get_student_id_by_telegram_id(message.from_user.id)
+        await state.update_data(student_id=student_id)
         return await handler(event, data)
 
 

@@ -1,7 +1,9 @@
 import asyncio
-from sqlalchemy import select
+from sqlalchemy import select, desc
+from sqlalchemy.orm import selectinload, joinedload
+
 from tgBot.database.connect import async_session
-from tgBot.database.models import Group, Student, Course, Task
+from tgBot.database.models import Group, Student, Course, Task, SubmittedTask
 
 
 # async def print_all_groups():
@@ -70,3 +72,36 @@ async def get_topics_by_course_id(course_id: int) -> list[Task]:
             select(Task).where(Task.course_id == course_id)
         )
         return result.scalars().all()
+
+
+async def get_last_submission_full(student_id: int,
+                                   task_id: int) -> SubmittedTask | None:
+    async with async_session() as session:
+        result = await session.execute(
+            select(SubmittedTask)
+            .where(SubmittedTask.student_id == student_id)
+            .where(SubmittedTask.task_id == task_id)
+            .order_by(desc(SubmittedTask.submitted_date))
+            .limit(1)
+        )
+        return result.scalars().first()
+
+
+async def get_task_id_by_topic_name(topic_name: str,
+                                    course_id: int) -> int | None:
+    async with async_session() as session:
+        result = await session.execute(
+            select(Task.id).where(Task.topic == topic_name,
+                                  Task.course_id == course_id)
+        )
+        task_id = result.scalar()
+        return task_id
+
+
+async def get_student_id_by_telegram_id(tg_id: int) -> int | None:
+    async with async_session() as session:
+        result = await session.execute(
+            select(Student.id).where(Student.telegram_id == tg_id)
+        )
+        student_id = result.scalar()
+        return student_id

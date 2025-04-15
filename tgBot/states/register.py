@@ -14,4 +14,5 @@ class Lesson(StatesGroup):
 
 class CourseSelect(StatesGroup):
     waiting_for_course = State()
+    waiting_for_topic = State()
 
