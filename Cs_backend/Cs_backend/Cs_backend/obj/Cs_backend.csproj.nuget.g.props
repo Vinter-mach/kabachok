@@ -22,5 +22,7 @@
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Pkgxunit_analyzers Condition=" '$(Pkgxunit_analyzers)' == '' ">C:\Users\mzuko\.nuget\packages\xunit.analyzers\1.18.0</Pkgxunit_analyzers>
+    <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">C:\Users\mzuko\.nuget\packages\awssdk.core\3.7.402.40</PkgAWSSDK_Core>
+    <PkgAWSSDK_S3 Condition=" '$(PkgAWSSDK_S3)' == '' ">C:\Users\mzuko\.nuget\packages\awssdk.s3\3.7.416.10</PkgAWSSDK_S3>
   </PropertyGroup>
 </Project>
