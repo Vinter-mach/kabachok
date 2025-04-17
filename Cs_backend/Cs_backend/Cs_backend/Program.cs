@@ -79,6 +79,20 @@ builder.Services.AddAuthorization();
 
 #endregion
 
+#region Cors
+// Эдик просил
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhostFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+#endregion
+
 builder.Services.AddScoped<CourseService>();
 builder.Services.AddScoped<TaskService>();
 builder.Services.AddScoped<GroupService>();
