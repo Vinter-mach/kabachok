@@ -26,17 +26,17 @@ function SelectionPage() {
 
     return (
         <div className="selection-container">
-            <h2>Выберите или добавьте вариант</h2>
+            <h2>Выбери или добавь курс</h2>
 
             <div className="form-group">
-                <label htmlFor="options">Доступные варианты:</label>
+                <label htmlFor="options">Курсы</label>
                 <select
                     id="options"
                     value={selectedOption}
                     onChange={(e) => setSelectedOption(e.target.value)}
                     className="form-control"
                 >
-                    <option value="">-- Выберите вариант --</option>
+                    <option value="">тыкни на меня</option>
                     {options.map((option, index) => (
                         <option key={index} value={option}>
                             {option}
@@ -46,7 +46,7 @@ function SelectionPage() {
             </div>
 
             <div className="form-group">
-                <label htmlFor="newOption">Добавить новый вариант:</label>
+                <label htmlFor="newOption">Добавить новый курс</label>
                 <div className="input-group">
                     <input
                         type="text"
