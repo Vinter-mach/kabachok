@@ -20,12 +20,12 @@ public class TeacherConfiguration : IEntityTypeConfiguration<Teacher>
     {
         builder.Property(t => t.Login)
             .IsRequired()
-            .HasMaxLength(50);
+            .HasMaxLength(256);
         builder.Property(t => t.PasswordHash)
             .IsRequired()
-            .HasMaxLength(50);
+            .HasMaxLength(256);
         builder.Property(t => t.Name)
             .IsRequired()
-            .HasMaxLength(50);
+            .HasMaxLength(256);
     }
 }

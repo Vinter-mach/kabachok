@@ -52,29 +52,24 @@ public class ApplicationContextTests
         context.Database.OpenConnection();
         context.Groups.Add(new Group()
         {
-            Id = 1,
             Name = "ФТ-203-1"
         });
         context.Groups.Add(new Group()
         {
-            Id = 2,
             Name = "ФТ-203-2"
         });
         context.Courses.Add(new Course()
         {
-            Id = 1,
             Name = "ФИИТ 2024 осень",
             PasswordHash = 1224
         });
         context.Courses.Add(new Course()
         {
-            Id = 2,
             Name = "ФИИТ 2025 весна",
             PasswordHash = 1225
         });
         context.Teachers.Add(new Teacher()
         {
-            Id = 1,
             Login = "volkova@gmail.com",
             PasswordHash = "$2a$11$idMtnmRVsoB6EZjfe6Crk.aZpW949JN9c0gegB2IkjQpr4pKeJAVK",
             Name = "Саша",
@@ -91,7 +86,6 @@ public class ApplicationContextTests
         });
         context.Students.Add(new Student()
         {
-            Id = 1,
             GroupId = 1,
             Name = "Эдик Рашитов",
             TelegramId = 123,
@@ -99,7 +93,6 @@ public class ApplicationContextTests
         });
         context.Students.Add(new Student()
         {
-            Id = 2,
             GroupId = 1,
             Name = "Миша Зюков",
             TelegramId = 1234,
@@ -107,7 +100,6 @@ public class ApplicationContextTests
         });
         context.Students.Add(new Student()
         {
-            Id = 3,
             GroupId = 2,
             Name = "Антон Жданов",
             TelegramId = 1235,
@@ -115,7 +107,6 @@ public class ApplicationContextTests
         });
         context.Students.Add(new Student()
         {
-            Id = 4,
             GroupId = 2,
             Name = "Степан Гребнев",
             TelegramId = 1236,
@@ -123,12 +114,10 @@ public class ApplicationContextTests
         });
         context.Statuses.Add(new TaskStatus()
         {
-            Id = 1,
             Name = "Aboba"
         });
         context.Tasks.Add(new Task()
         {
-            Id = 1,
             Topic = "Тервер 1",
             TaskLink = @"1\1\1",
             Deadline = DateOnly.MaxValue,
@@ -138,7 +127,6 @@ public class ApplicationContextTests
         });
         context.Tasks.Add(new Task()
         {
-            Id = 2,
             Topic = "Матстат 1",
             TaskLink = @"2\1\1",
             Deadline = DateOnly.MaxValue,
@@ -146,6 +134,7 @@ public class ApplicationContextTests
             IsGrave = false,
             CourseId = 2,
         });
+        context.SaveChanges();
     }
 
     [Fact]
