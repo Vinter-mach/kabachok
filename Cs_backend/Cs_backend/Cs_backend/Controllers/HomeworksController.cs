@@ -1,9 +1,12 @@
 using Cs_backend.DTO;
 using Cs_backend.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cs_backend.Controllers;
 
+[Authorize]
+[ApiController]
 [Route("courses/{courseId:int}/{taskId:int}/submissions/{submissionId:int}")]
 public class HomeworkController(HomeworkService homeworkService) : ControllerBase
 {
