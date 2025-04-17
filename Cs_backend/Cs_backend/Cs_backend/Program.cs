@@ -25,8 +25,23 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 
 #region Auth
+DotNetEnv.Env.Load();
+var jwtSettings = new JwtSettings
+{
+    Key = Environment.GetEnvironmentVariable("JWT_KEY"),
+    Issuer = Environment.GetEnvironmentVariable("JWT_ISSUER"),
+    Audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE"),
+    ExpiresInMinutes = int.Parse(Environment.GetEnvironmentVariable("JWT_EXPIRES") ?? "60")
+};
 
-builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+builder.Services.Configure<JwtSettings>(options =>
+{
+    options.Key = jwtSettings.Key;
+    options.Issuer = jwtSettings.Issuer;
+    options.Audience = jwtSettings.Audience;
+    options.ExpiresInMinutes = jwtSettings.ExpiresInMinutes;
+});
+
 
 builder.Services.AddAuthentication(options =>
     {
@@ -35,7 +50,6 @@ builder.Services.AddAuthentication(options =>
     })
     .AddJwtBearer(options =>
     {
-        var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,

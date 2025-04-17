@@ -1,11 +1,8 @@
-using Amazon;
 using Amazon.S3;
 using Amazon.S3.Model;
-using System.Data;
 using Cs_backend.DTO;
 using Cs_backend.Models;
 using Cs_backend.Repositories;
-using Xunit.Sdk;
 
 namespace Cs_backend.Services;
 
