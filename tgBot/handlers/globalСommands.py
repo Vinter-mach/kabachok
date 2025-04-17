@@ -4,7 +4,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 
 from tgBot.database.request import get_available_courses_for_student
-from tgBot.states.register import Lesson, CourseSelect
+from tgBot.states.register import Lesson, CourseSelect, LessonSelect
 from tgBot.handlers.course import show_course_topics
 
 router = Router()
@@ -56,7 +56,7 @@ async def get_lesson(message: types.Message, state: FSMContext):
         await show_course_topics(message, course_id, state)
         # Здесь можно перевести пользователя в состояние выбора темы,
         # например, если это предусмотрено в FSM, например:
-        await state.set_state(CourseSelect.waiting_for_topic)
+        await state.set_state(LessonSelect.waiting_for_topic)
 
 
 @router.message(Command("choose_course"))

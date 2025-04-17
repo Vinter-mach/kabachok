@@ -11,6 +11,7 @@ async def main():
     dp = Dispatcher(storage=MemoryStorage())
     dp.message.middleware(AuthMiddleware())
     dp.include_router(globalСommands.router)
+    dp.include_router(lesson.router)
     dp.include_router(course.router)
     dp.include_router(rolllback.router)
     await dp.start_polling(bot)

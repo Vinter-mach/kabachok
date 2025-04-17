@@ -1,39 +1,6 @@
-import asyncio
 from sqlalchemy import select, desc
-from sqlalchemy.orm import selectinload, joinedload
-
 from tgBot.database.connect import async_session
-from tgBot.database.models import Group, Student, Course, Task, SubmittedTask
-
-
-# async def print_all_groups():
-#     async with async_session() as session:
-#         result = await session.execute(select(Group))
-#         groups = result.scalars().all()
-#
-#         for group in groups:
-#             print(f"{group.id}: {group.name}")
-#
-# async def check_student_identity(telegram_id: int, full_name: str,
-#                                  group_name: str) -> bool:
-#     async with async_session() as session:
-#         group_result = await session.execute(
-#             select(Group).where(Group.name == group_name)
-#         )
-#         group = group_result.scalars().first()
-#
-#         if not group:
-#             return False
-#         student_result = await session.execute(
-#             select(Student).where(and_(
-#                 Student.telegram_id == telegram_id,
-#                 Student.name == full_name,
-#                 Student.group_id == group.id
-#             ))
-#         )
-#
-#         student = student_result.scalars().first()
-#         return student is not None
+from tgBot.database.models import Student, Course, Task, SubmittedTask
 
 
 async def get_student_by_telegram_id(telegram_id: int) -> Student | None:
