@@ -43,7 +43,7 @@ public class SubmittedTasksConfiguration : IEntityTypeConfiguration<SubmittedTas
     {
         builder.Property(x => x.HomeworkLink)
             .IsRequired()
-            .HasMaxLength(250);
+            .HasMaxLength(256);
         builder.Property(x => x.Comment)
             .HasMaxLength(MaxCommentLength);
         builder.Property(x => x.SubmittedDate)

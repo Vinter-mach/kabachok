@@ -38,8 +38,8 @@ public class TasksConfiguration : IEntityTypeConfiguration<Task>
     {
         builder.Property(t => t.Topic)
             .IsRequired()
-            .HasMaxLength(100);
+            .HasMaxLength(256);
         builder.Property(t => t.TaskLink)
-            .HasMaxLength(100);
+            .HasMaxLength(256);
     }
 }

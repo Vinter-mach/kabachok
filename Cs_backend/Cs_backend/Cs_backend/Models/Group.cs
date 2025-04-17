@@ -25,6 +25,6 @@ public class GroupConfiguration : IEntityTypeConfiguration<Group>
     public void Configure(EntityTypeBuilder<Group> builder)
     {
         builder.Property(e => e.Name)
-            .HasMaxLength(50);
+            .HasMaxLength(256);
     }
 }

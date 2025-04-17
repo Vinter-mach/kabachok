@@ -15,6 +15,6 @@ public class TaskStatusConfiguration : IEntityTypeConfiguration<TaskStatus>
     {
         builder.Property(t => t.Name)
             .IsRequired()
-            .HasMaxLength(50);
+            .HasMaxLength(256);
     }
 }

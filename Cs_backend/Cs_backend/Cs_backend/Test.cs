@@ -116,24 +116,24 @@ public class ApplicationContextTests
         {
             Name = "Aboba"
         });
-        context.Tasks.Add(new Task()
-        {
-            Topic = "Тервер 1",
-            TaskLink = @"1\1\1",
-            Deadline = DateOnly.MaxValue,
-            TeacherId = 1,
-            IsGrave = false,
-            CourseId = 1,
-        });
-        context.Tasks.Add(new Task()
-        {
-            Topic = "Матстат 1",
-            TaskLink = @"2\1\1",
-            Deadline = DateOnly.MaxValue,
-            TeacherId = 1,
-            IsGrave = false,
-            CourseId = 2,
-        });
+        // context.Tasks.Add(new Task()
+        // {
+        //     Topic = "Тервер 1",
+        //     TaskLink = @"1\1\1",
+        //     Deadline = DateOnly.MaxValue,
+        //     TeacherId = 1,
+        //     IsGrave = false,
+        //     CourseId = 1,
+        // });
+        // context.Tasks.Add(new Task()
+        // {
+        //     Topic = "Матстат 1",
+        //     TaskLink = @"2\1\1",
+        //     Deadline = DateOnly.MaxValue,
+        //     TeacherId = 1,
+        //     IsGrave = false,
+        //     CourseId = 2,
+        // });
         context.SaveChanges();
     }
 
