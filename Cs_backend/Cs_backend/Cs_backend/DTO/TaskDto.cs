@@ -9,7 +9,7 @@ public class TaskDto : ICastable<Task>
     public required string Name { get; set; }
     public required string TaskLink { get; set; }
     public DateOnly Deadline { get; set; }
-    public required string Teacher { get; set; }
+    public int TeacherId { get; set; }
     public bool IsGraves { get; set; }
 
     public Task Cast()
@@ -20,7 +20,7 @@ public class TaskDto : ICastable<Task>
             Id = TaskId,
             TaskLink = TaskLink,
             Deadline = Deadline,
-            Teacher = Teacher,
+            TeacherId = TeacherId,
             IsGrave = IsGraves,
         };
     }

@@ -37,9 +37,9 @@ builder.Services.AddScoped<StudentRepository>();
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
-        options.JsonSerializerOptions.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+        options.JsonSerializerOptions.Encoder =
+            System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
     }); // для русских букв в отображении, но можно будет убрать потом, просто вместо букв бутут \u9347 или типа того
-
 
 
 var app = builder.Build();

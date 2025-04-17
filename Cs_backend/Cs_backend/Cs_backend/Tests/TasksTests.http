@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
   "taskId": 3,
-  "name": "Test3",
+  "name": "Test4",
   "taskLink": "Test",
   "deadline": "2019-08-24",
   "teacher": "Test",

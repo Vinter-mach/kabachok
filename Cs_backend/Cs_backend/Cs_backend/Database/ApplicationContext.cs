@@ -66,6 +66,9 @@ public sealed class ApplicationContext : DbContext
         modelBuilder.Entity<TeacherCourse>()
             .HasOne(tc => tc.Course)
             .WithMany(c => c.TeacherCourses);
+        modelBuilder.Entity<Task>()
+            .HasOne(t => t.Teacher)
+            .WithMany(t => t.Tasks);
     }
     
     private static string ToSnakeCase(string input)

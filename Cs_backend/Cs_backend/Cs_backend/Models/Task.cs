@@ -11,11 +11,12 @@ public class Task
     public string Topic { get; set; }
     public string TaskLink { get; set; }
     public DateOnly Deadline { get; set; }
-    public string Teacher { get; set; }
+    public int TeacherId { get; set; }
     public bool IsGrave { get; set; }
     public int CourseId { get; set; }
     public Course Course { get; set; }
     public ICollection<SubmittedTask> SubmittedTasks { get; set; }
+    public Teacher Teacher { get; set; }
 
     public TaskDto Cast()
     {
@@ -25,7 +26,7 @@ public class Task
             Name = Topic,
             TaskLink = TaskLink,
             Deadline = Deadline,
-            Teacher = Teacher,
+            TeacherId = TeacherId,
             IsGraves = IsGrave,
         };
     }
@@ -39,9 +40,6 @@ public class TasksConfiguration : IEntityTypeConfiguration<Task>
             .IsRequired()
             .HasMaxLength(100);
         builder.Property(t => t.TaskLink)
-            .HasMaxLength(100);
-        builder.Property(t => t.Teacher)
-            .IsRequired()
             .HasMaxLength(100);
     }
 }
