@@ -1,10 +1,13 @@
+using System.Text;
 using System.Text.Json;
+using Cs_backend;
 using Cs_backend.Database;
 using Cs_backend.Models;
 using Cs_backend.Repositories;
 using Cs_backend.Services;
 using Microsoft.EntityFrameworkCore;
-using Task = Cs_backend.Models.Task;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,12 +23,55 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
+
+#region Auth
+
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtSettings.Issuer,
+            ValidAudience = jwtSettings.Audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
+        };
+        options.Events = new JwtBearerEvents
+        {
+            OnChallenge = context =>
+            {
+                context.HandleResponse();
+                context.Response.StatusCode = 498;
+                context.Response.ContentType = "application/json";
+                return context.Response.WriteAsync(JsonSerializer.Serialize(new
+                {
+                    status = 498,
+                    message = "Token is missing or invalid"
+                }));
+            }
+        };
+    });
+builder.Services.AddAuthorization();
+
+#endregion
+
 builder.Services.AddScoped<CourseService>();
 builder.Services.AddScoped<TaskService>();
 builder.Services.AddScoped<GroupService>();
 builder.Services.AddScoped<SubmissionService>();
 builder.Services.AddScoped<HomeworkService>();
 builder.Services.AddScoped<StudentService>();
+builder.Services.AddScoped<AuthService>();
 
 builder.Services.AddScoped<IRepository<Course>, CourseRepository>();
 builder.Services.AddScoped<IRepository<Group>, GroupRepository>();
@@ -33,6 +79,7 @@ builder.Services.AddScoped<TaskRepository>();
 builder.Services.AddScoped<SubmissionRepository>();
 builder.Services.AddScoped<HomeworkRepository>();
 builder.Services.AddScoped<StudentRepository>();
+builder.Services.AddScoped<AuthRepository>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>

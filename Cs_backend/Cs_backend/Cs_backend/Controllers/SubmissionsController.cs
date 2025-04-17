@@ -1,11 +1,10 @@
-using Cs_backend.DTO;
-using Cs_backend.Models;
 using Cs_backend.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cs_backend.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("courses/{courseId:int}/{taskId:int}/submissions")]
 public class SubmissionController(SubmissionService taskService) : ControllerBase

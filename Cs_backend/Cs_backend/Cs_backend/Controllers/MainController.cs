@@ -1,10 +1,10 @@
-using Cs_backend.Models;
-using Cs_backend.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cs_backend.Controllers;
 
 
+[Authorize]
 [ApiController]
 [Route("")]
 public class MainController : ControllerBase
