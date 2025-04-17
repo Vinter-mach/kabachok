@@ -1,8 +1,9 @@
+using Cs_backend.Interfaces;
 using Cs_backend.Models;
 
 namespace Cs_backend.DTO;
 
-public class StudentDto
+public class StudentDto : ICastable<Student>
 {
     public int StudentId { get; set; }
     public required string Name { get; set; }
@@ -19,12 +20,13 @@ public class StudentDto
         return TgUserName.GetHashCode();
     }
 
-    public Student ToStudent()
+    public Student Cast()
     => new() { 
         Id = StudentId,
         Name = Name,
         GroupId = GroupId,
         TelegramId = GetTgIdFromUserName(),
-        CourseId = CourseId
+        CourseId = CourseId,
+        // Тут нужно вроде добавить TgName или что-то такое, но у нас в базе такого поля нет))
     };
 }

@@ -1,8 +1,9 @@
+using Cs_backend.Interfaces;
 using Task = Cs_backend.Models.Task;
 
 namespace Cs_backend.DTO;
 
-public class TaskDto
+public class TaskDto : ICastable<Task>
 {
     public int TaskId { get; set; }
     public required string Name { get; set; }
@@ -11,7 +12,7 @@ public class TaskDto
     public required string Teacher { get; set; }
     public bool IsGraves { get; set; }
 
-    public Task ToTask()
+    public Task Cast()
     {
         return new Task
         {

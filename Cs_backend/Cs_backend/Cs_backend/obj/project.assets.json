@@ -2,6 +2,35 @@
   "version": 3,
   "targets": {
     "net9.0": {
+      "AWSSDK.Core/3.7.402.40": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/AWSSDK.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "AWSSDK.S3/3.7.416.10": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.7.402.40, 4.0.0)"
+        },
+        "compile": {
+          "lib/net8.0/AWSSDK.S3.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.S3.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/9.0.2": {
         "type": "package",
         "dependencies": {
@@ -692,6 +721,67 @@
     }
   },
   "libraries": {
+    "AWSSDK.Core/3.7.402.40": {
+      "sha512": "DSJubHYjaugwA0tiktUxHF5cyaXlN/L9YoXSTTrie3qk16KMAWIiM7P6o7s8wEnkZLtiZQGEerHO+Ov0nmQ5vw==",
+      "type": "package",
+      "path": "awssdk.core/3.7.402.40",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "awssdk.core.3.7.402.40.nupkg.sha512",
+        "awssdk.core.nuspec",
+        "images/AWSLogo.png",
+        "lib/net35/AWSSDK.Core.dll",
+        "lib/net35/AWSSDK.Core.pdb",
+        "lib/net35/AWSSDK.Core.xml",
+        "lib/net45/AWSSDK.Core.dll",
+        "lib/net45/AWSSDK.Core.pdb",
+        "lib/net45/AWSSDK.Core.xml",
+        "lib/net8.0/AWSSDK.Core.dll",
+        "lib/net8.0/AWSSDK.Core.pdb",
+        "lib/net8.0/AWSSDK.Core.xml",
+        "lib/netcoreapp3.1/AWSSDK.Core.dll",
+        "lib/netcoreapp3.1/AWSSDK.Core.pdb",
+        "lib/netcoreapp3.1/AWSSDK.Core.xml",
+        "lib/netstandard2.0/AWSSDK.Core.dll",
+        "lib/netstandard2.0/AWSSDK.Core.pdb",
+        "lib/netstandard2.0/AWSSDK.Core.xml",
+        "tools/account-management.ps1"
+      ]
+    },
+    "AWSSDK.S3/3.7.416.10": {
+      "sha512": "HPW2fj2tRi49XzP/IMyid2LLGoeaz2jHeqK7r1MA/0o/rjWZihl9T+1FjgMyLekvEDkV88kUoF5D9L+vQ4R6KQ==",
+      "type": "package",
+      "path": "awssdk.s3/3.7.416.10",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.S3.CodeAnalysis.dll",
+        "analyzers/dotnet/cs/SharedAnalysisCode.dll",
+        "awssdk.s3.3.7.416.10.nupkg.sha512",
+        "awssdk.s3.nuspec",
+        "images/AWSLogo.png",
+        "lib/net35/AWSSDK.S3.dll",
+        "lib/net35/AWSSDK.S3.pdb",
+        "lib/net35/AWSSDK.S3.xml",
+        "lib/net45/AWSSDK.S3.dll",
+        "lib/net45/AWSSDK.S3.pdb",
+        "lib/net45/AWSSDK.S3.xml",
+        "lib/net8.0/AWSSDK.S3.dll",
+        "lib/net8.0/AWSSDK.S3.pdb",
+        "lib/net8.0/AWSSDK.S3.xml",
+        "lib/netcoreapp3.1/AWSSDK.S3.dll",
+        "lib/netcoreapp3.1/AWSSDK.S3.pdb",
+        "lib/netcoreapp3.1/AWSSDK.S3.xml",
+        "lib/netstandard2.0/AWSSDK.S3.dll",
+        "lib/netstandard2.0/AWSSDK.S3.pdb",
+        "lib/netstandard2.0/AWSSDK.S3.xml",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "Microsoft.AspNetCore.OpenApi/9.0.2": {
       "sha512": "JUndpjRNdG8GvzBLH/J4hen4ehWaPcshtiQ6+sUs1Bcj3a7dOsmWpDloDlpPeMOVSlhHwUJ3Xld0ClZjsFLgFQ==",
       "type": "package",
@@ -1559,6 +1649,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "AWSSDK.S3 >= 3.7.416.10",
       "Microsoft.AspNetCore.OpenApi >= 9.0.2",
       "Microsoft.EntityFrameworkCore >= 9.0.3",
       "Microsoft.NET.Test.Sdk >= 17.13.0",
@@ -1568,19 +1659,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Катя\\.nuget\\packages\\": {}
+    "C:\\Users\\mzuko\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Катя\\Desktop\\projects\\kabachok\\Cs_backend\\Cs_backend\\Cs_backend\\Cs_backend.csproj",
+      "projectUniqueName": "D:\\Институт\\Kabachok\\kabachok\\Cs_backend\\Cs_backend\\Cs_backend\\Cs_backend.csproj",
       "projectName": "Cs_backend",
-      "projectPath": "C:\\Users\\Катя\\Desktop\\projects\\kabachok\\Cs_backend\\Cs_backend\\Cs_backend\\Cs_backend.csproj",
-      "packagesPath": "C:\\Users\\Катя\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Катя\\Desktop\\projects\\kabachok\\Cs_backend\\Cs_backend\\Cs_backend\\obj\\",
+      "projectPath": "D:\\Институт\\Kabachok\\kabachok\\Cs_backend\\Cs_backend\\Cs_backend\\Cs_backend.csproj",
+      "packagesPath": "C:\\Users\\mzuko\\.nuget\\packages\\",
+      "outputPath": "D:\\Институт\\Kabachok\\kabachok\\Cs_backend\\Cs_backend\\Cs_backend\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Катя\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mzuko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1588,6 +1684,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1604,14 +1701,17 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+        "auditMode": "direct"
+      }
     },
     "frameworks": {
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "AWSSDK.S3": {
+            "target": "Package",
+            "version": "[3.7.416.10, )"
+          },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[9.0.2, )"
@@ -1656,7 +1756,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

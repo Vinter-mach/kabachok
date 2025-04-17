@@ -8,28 +8,15 @@ namespace Cs_backend.Services;
 
 public class HomeworkService(HomeworkRepository homeworkRepository)
 {
-    public async System.Threading.Tasks.Task AddOrUpdateSubmission(SubmittedTask task)
+    public async System.Threading.Tasks.Task UpdateSubmission(SubmittedTask task)
     {
         await homeworkRepository.UpdateAsync(task);
     }
 
     public async Task<SubmissionDto> GetSubmissionBySubmissionId(int submissionId)
     {
-        var submission = await homeworkRepository.GetHomeworkById(submissionId);
+        var submission = await homeworkRepository.GetByIdAsync(submissionId);
 
-        if (submission is null)
-            return new SubmissionDto() { Comment =  "решения нет" };
-        
-        return new SubmissionDto()
-        {
-            SubmissionId = submission.Id,
-            TaskId = submission.TaskId,
-            StudentId = submission.StudentId,
-            StatusId = submission.StatusId,
-            homeworkFile = submission.HomeworkLink,
-            Date = submission.SubmittedDate,
-            Grade = submission.Grade,
-            Comment = submission.Comment
-        };
+        return submission is null ? new SubmissionDto() { Comment = "решения нет" } : submission.Cast();
     }
 }

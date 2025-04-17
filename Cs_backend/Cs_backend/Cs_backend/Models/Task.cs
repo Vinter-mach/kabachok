@@ -1,10 +1,12 @@
+using Cs_backend.DTO;
+using Cs_backend.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cs_backend.Models;
 
 public class Task
-    : BaseModel
+    : BaseModel, ICastable<TaskDto>
 {
     public string Topic { get; set; }
     public string TaskLink { get; set; }
@@ -14,8 +16,20 @@ public class Task
     public int CourseId { get; set; }
     public Course Course { get; set; }
     public ICollection<SubmittedTask> SubmittedTasks { get; set; }
-}
 
+    public TaskDto Cast()
+    {
+        return new TaskDto
+        {
+            TaskId = Id,
+            Name = Topic,
+            TaskLink = TaskLink,
+            Deadline = Deadline,
+            Teacher = Teacher,
+            IsGraves = IsGrave,
+        };
+    }
+}
 
 public class TasksConfiguration : IEntityTypeConfiguration<Task>
 {

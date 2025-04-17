@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Cs_backend.Database;
 using Cs_backend.Models;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,11 @@ public abstract class BaseRepository<T>(ApplicationContext applicationContext, D
     public async Task<T?> GetByIdAsync(int id)
     {
         return await dbSet.FindAsync(id);
+    }
+
+    public async Task<List<T>> GetByFuncAsync(Expression<Func<T, bool>> predicate)
+    {
+        return await dbSet.AsNoTracking().Where(predicate).ToListAsync();
     }
 
     public async Task<List<T>> GetAllAsync()

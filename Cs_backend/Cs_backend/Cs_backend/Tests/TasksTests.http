@@ -1,5 +1,7 @@
 ### environment: dev
 
+@Cs_backend_HostAddress = http://localhost:5249
+
 GET {{Cs_backend_HostAddress}}/courses/1
 Accept: application/json
 
