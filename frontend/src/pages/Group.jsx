@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import '../styles/Group.css';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 function Group() {
     const [inputValue, setInputValue] = useState('');
