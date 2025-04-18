@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../styles/Group.css';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Group() {
     const [groupInput, setGroupInput] = useState('');
@@ -9,11 +9,16 @@ function Group() {
     const [telegramTag, setTelegramTag] = useState('');
     const [groups, setGroups] = useState([]);
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         const fetchGroups = async () => {
             try {
-                const response = await fetch('http://localhost:5249/groups/');
+                const response = await fetch('http://localhost:5249/groups/', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
                 if (!response.ok) {
                     throw new Error('Ошибка при получении групп');
                 }
@@ -34,14 +39,15 @@ function Group() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({ name: groupInput }),
             });
-    
+
             if (!response.ok) {
                 throw new Error('Ошибка при добавлении группы');
             }
-    
+
             const newGroup = await response.json();
             setGroups([...groups, newGroup]);
             setGroupInput('');

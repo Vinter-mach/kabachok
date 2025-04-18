@@ -5,26 +5,46 @@ import '../styles/Authorization.css';
 function Authorization() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
-
-    // тут хранятся данные для входа
-    const validCredentials = [
-        {username: 'sosal', password: 'sosal'},
-        {username: 'pedic', password: 'rashitov'}
-    ]
 
     // обработка события
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
 
-        const matchedUser = validCredentials.find(
-            cred => cred.username === username && cred.password === password
-        );
+        try {
+            const response = await fetch('http://localhost:5249/auth/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
 
-        if (matchedUser) {
-            navigate('/courses');
-        } else {
-            console.log('No')
+            if (response.status === 401) {
+                setError('Сессия истекла или токен недействителен. Повторите вход.');
+                return;
+            }
+
+            if (!response.ok) {
+                setError('Неверный логин или пароль');
+                return;
+            }
+
+            const data = await response.json();
+            const token = data.token;
+
+            if (token) {
+                localStorage.setItem('token', token);
+                navigate('/courses');
+            } else {
+                setError('Не удалось получить токен');
+            }
+
+        } catch (err) {
+            console.error('Ошибка при авторизации:', err);
+            setError('Ошибка подключения к серверу');
         }
     }
 
@@ -54,6 +74,7 @@ function Authorization() {
                         required
                         autoComplete="current-password"/>
                 </div>
+                {error && <div className="error-message">{error}</div>}
                 <button type="submit" className="login-button">Войти</button>
             </form>
         </div>
