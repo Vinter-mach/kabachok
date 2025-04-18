@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Authorization from "./pages/Authorization.jsx";
 import Course from "./pages/Course.jsx";
 import Group from "./pages/Group.jsx";
-import Test from "./pages/Test.jsx";
+import CheckPage from "./pages/CheckPage.jsx";
 
 function App() {
     return (
@@ -12,7 +12,7 @@ function App() {
                 <Route path="/" element={<Authorization />} />
                 <Route path="/courses" element={<Course />} />
                 <Route path="/group" element={<Group />} />
-                <Route path="/test" element={<Test />} />
+                <Route path="/test" element={<CheckPage />} />
             </Routes>
         </BrowserRouter>
     );
