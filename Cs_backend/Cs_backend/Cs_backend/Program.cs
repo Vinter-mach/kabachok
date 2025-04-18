@@ -119,6 +119,7 @@ builder.Services.AddControllers()
 
 var app = builder.Build();
 
+app.UseCors("AllowLocalhostFrontend");
 app.UseHttpsRedirection();
 app.MapControllers();
 
