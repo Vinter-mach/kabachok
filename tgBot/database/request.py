@@ -1,7 +1,10 @@
 from datetime import date, datetime
 from sqlalchemy import select, desc
+from sqlalchemy.orm import selectinload
+
 from tgBot.database.connect import async_session
-from tgBot.database.models import Student, Course, Task, SubmittedTask
+from tgBot.database.models import Student, Course, Task, SubmittedTask, Status, \
+    Teacher
 
 
 async def get_student_by_telegram_id(telegram_id: int) -> Student | None:
@@ -42,17 +45,26 @@ async def get_topics_by_course_id(course_id: int) -> list[Task]:
         return result.scalars().all()
 
 
-async def get_last_submission_full(student_id: int,
-                                   task_id: int) -> SubmittedTask | None:
+async def has_student_submitted(student_id: int,
+                                task_id: int) -> SubmittedTask | None:
     async with async_session() as session:
         result = await session.execute(
             select(SubmittedTask)
             .where(SubmittedTask.student_id == student_id)
             .where(SubmittedTask.task_id == task_id)
-            .order_by(desc(SubmittedTask.submitted_date))
             .limit(1)
         )
         return result.scalars().first()
+
+
+async def get_task_info_by_id(task_id: int) -> Task | None:
+    async with async_session() as session:
+        result = await session.execute(
+            select(Task)
+            .options(selectinload(Task.teacher))  # подгружаем teacher
+            .where(Task.id == task_id)
+        )
+        return result.scalar_one_or_none()
 
 
 async def get_task_id_by_topic_name(topic_name: str,
@@ -92,11 +104,31 @@ async def save_submission_to_db(student_id: int, task_id: int, prefix: str):
             submission = SubmittedTask(
                 student_id=student_id,
                 task_id=task_id,
-                status_id=1, # 1 значит на проверке
+                status_id=1,  # 1 значит на проверке
                 homework_prefix=prefix,
                 submitted_date=date.today(),
                 grade=0,
                 comment=""
             )
             session.add(submission)
-            await session.commit()
+        await session.commit()
+
+
+async def get_last_submission_full(student_id: int,
+                                   task_id: int) -> SubmittedTask | None:
+    async with async_session() as session:
+        result = await session.execute(
+            select(SubmittedTask)
+            .options(
+                # для каждой найденной отправки сразу подтянем Task и у него — Teacher
+                selectinload(SubmittedTask.task)
+                .selectinload(Task.teacher),
+                # и сразу подтянем Status
+                selectinload(SubmittedTask.status),
+            )
+            .where(SubmittedTask.student_id == student_id,
+                   SubmittedTask.task_id == task_id)
+            .order_by(desc(SubmittedTask.submitted_date))
+            .limit(1)
+        )
+        return result.scalars().first()

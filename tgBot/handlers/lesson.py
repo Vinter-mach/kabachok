@@ -4,7 +4,8 @@ from aiogram.fsm.context import FSMContext
 from aiogram import Router, types, F
 from aiogram.types import ReplyKeyboardRemove
 from tgBot.database.request import get_last_submission_full, \
-    get_task_id_by_topic_name, save_submission_to_db
+    get_task_id_by_topic_name, save_submission_to_db, has_student_submitted, \
+    get_task_info_by_id
 from tgBot.handlers.course import show_course_topics
 from tgBot.keyboards.reply import send_or_select_topic
 from tgBot.states.register import LessonSelect
@@ -27,11 +28,21 @@ async def handle_topic_selection(message: types.Message, state: FSMContext):
         return
     task_id = await get_task_id_by_topic_name(topic_name, course_id)
     await state.update_data(task_id=task_id)
-    last_submission_task = await get_last_submission_full(student_id, task_id)
-    if not last_submission_task:
-        await message.answer("Ты ещё не отправлял задание по этой теме.")
+    await state.update_data(topic_name=topic_name)
+    submitted_task = await has_student_submitted(student_id, task_id)
+    if not submitted_task:
+        task = await get_task_info_by_id(task_id)
+        if task:
+            await message.answer(
+                f"Ты еще не отправлял домашку по этой теме\n"
+                f"📚 Тема: {task.topic}\n"
+                f"🔗 Ссылка: {task.task_link}\n"
+                f"📅 Дедлайн: {task.deadline.strftime('%d.%m.%Y') if task.deadline else '—'}\n"
+                f"👤 Преподаватель: {task.teacher.name}"
+            )
+        else:
+            await message.answer("Задание не найдено.")
     else:
-        await state.update_data(current_submission_task=last_submission_task)
         await print_task_information(message, state)
 
     await message.answer("Что ты хочешь сделать дальше?",
@@ -41,16 +52,36 @@ async def handle_topic_selection(message: types.Message, state: FSMContext):
 
 async def print_task_information(message: types.Message, state: FSMContext):
     data = await state.get_data()
-    student_id = data["student_id"]
     task_id = data["task_id"]
-    task = await get_last_submission_full(student_id, task_id)
-    await message.answer(
-        f"📄 Тема: пиздец\n"
-        f"🔗 Ссылка: {task.homework_prefix}\n"
-        f"📅 Дата: {task.submitted_date.strftime('%d.%m.%Y %H:%M')}\n"
-        f"📝 Оценка: {task.grade}\n"
-        f"💬 Комментарий: {task.comment}"
-    )
+    student_id = data.get("student_id")
+    submission = await get_last_submission_full(student_id, task_id)
+
+    topic = submission.task.topic
+    deadline = submission.task.deadline
+    teacher_name = submission.task.teacher.name
+    comment = submission.comment
+    status_name = submission.status.name
+    grade = submission.grade
+    sent_at = submission.submitted_date.strftime("%d.%m.%Y %H:%M")
+
+    if status_name == "Отправлено на проверку":
+        await message.answer(
+            f"📚 Тема: {topic}\n"
+            f"📅 Дедлайн: {deadline}\n"
+            f"👤 Преподаватель: {teacher_name}\n"
+            f"📌 Статус: {status_name}\n"
+            f"📨 Отправлено: {sent_at}"
+        )
+    else:
+        await message.answer(
+            f"📚 Тема: {topic}\n"
+            f"📅 Дедлайн: {deadline}\n"
+            f"👤 Преподаватель: {teacher_name}\n"
+            f"📌 Статус: {status_name}\n"
+            f"📨 Отправлено: {sent_at}"
+            f"📝 Оценка: {grade}\n"
+            f"💬 Комментарий: {comment}\n"
+        )
 
 
 @router.message(LessonSelect.after_topic, F.text == "Выбрать другую тему")
