@@ -4,6 +4,7 @@ import Authorization from "./pages/Authorization.jsx";
 import Course from "./pages/Course.jsx";
 import Group from "./pages/Group.jsx";
 import CheckPage from "./pages/CheckPage.jsx";
+import CheckHomepage from "./pages/CheckHomepage.jsx";
 
 function App() {
     return (
@@ -12,7 +13,8 @@ function App() {
                 <Route path="/" element={<Authorization />} />
                 <Route path="/courses" element={<Course />} />
                 <Route path="/group" element={<Group />} />
-                <Route path="/test" element={<CheckPage />} />
+                <Route path="/check" element={<CheckPage />} />
+                <Route path="/check_homepage" element={<CheckHomepage />} />
             </Routes>
         </BrowserRouter>
     );

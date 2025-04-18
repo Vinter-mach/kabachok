@@ -30,9 +30,9 @@ function SelectionPage() {
 
     useEffect(() => {
         if (token) {
-          fetchCourses();
+            fetchCourses();
         }
-      }, [fetchCourses, token]);
+    }, [fetchCourses, token]);
 
     // Добавление нового варианта
     // const handleAddOption = () => {
@@ -70,7 +70,9 @@ function SelectionPage() {
     // Переход на следующую страницу
     const handleNavigate = () => {
         if (selectedOption) {
-            navigate('/group', { state: { selectedOption } });
+            const course = options.find(opt => opt.name === selectedOption);
+            localStorage.setItem('courseId', course.courseId);
+            navigate('/check_homepage', { state: { courseId: course.courseId } });
         }
     };
 

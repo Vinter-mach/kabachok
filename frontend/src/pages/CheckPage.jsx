@@ -5,6 +5,8 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import '../styles/CheckPage.css';
 
+const topicId = localStorage.getItem('topicId');
+
 const initialGroupData = {
     'Group A': [
         { name: 'A', value: null, comment: null, pdfFile: '/example.pdf' },

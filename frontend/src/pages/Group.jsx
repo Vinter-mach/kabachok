@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom';
 function Group() {
     const [groupInput, setGroupInput] = useState('');
     const [selectedGroup, setSelectedGroup] = useState('');
+    const [selectedGroupId, setSelectedGroupId] = useState(null);
     const [studentName, setStudentName] = useState('');
     const [telegramTag, setTelegramTag] = useState('');
     const [groups, setGroups] = useState([]);
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
+    const courseId = localStorage.getItem('courseId');
 
     const fetchGroups = useCallback(async () => {
         try {
@@ -31,9 +33,9 @@ function Group() {
 
     useEffect(() => {
         if (token) {
-          fetchGroups();
+            fetchGroups();
         }
-      }, [fetchGroups, token]);
+    }, [fetchGroups, token]);
 
     const handleGroupAdd = async () => {
         try {
@@ -60,8 +62,54 @@ function Group() {
         }
     };
 
-    const handleStudentSave = () => {
-        console.log('Сохраняем:', { selectedGroup, studentName, telegramTag });
+    const handleGroupSelect = (e) => {
+        const groupName = e.target.value;
+        const group = groups.find(g => g.name === groupName);
+        setSelectedGroup(groupName);
+        setSelectedGroupId(group ? group.groupId : null);
+    };
+
+    const handleStudentSave = async () => {
+        if (!selectedGroupId || !studentName.trim() || !telegramTag.trim()) {
+            console.error('Не все поля заполнены');
+            return;
+        }
+
+        try {
+            const studentData = {
+                studentId: 0, // обычно сервер сам генерирует ID
+                name: studentName,
+                groupId: selectedGroupId,
+                tgUserName: telegramTag,
+                courseId: courseId
+            };
+
+            const response = await fetch(`http://localhost:5249/groups/${selectedGroupId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(studentData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка при сохранении студента');
+            }
+
+            const savedStudent = await response.json();
+            console.log('Студент сохранен:', savedStudent);
+            
+            // Очищаем поля после успешного сохранения
+            setStudentName('');
+            setTelegramTag('');
+            
+            // Можно добавить уведомление об успешном сохранении
+            alert('Студент успешно добавлен!');
+        } catch (error) {
+            console.error('Ошибка:', error);
+            alert('Произошла ошибка при сохранении студента');
+        }
     };
 
     const isButtonDisabled = groupInput.trim() === '';
@@ -70,7 +118,7 @@ function Group() {
         <>
             <button
                 className="back-button-fixed"
-                onClick={() => navigate('/test')}
+                onClick={() => navigate('/check_homepage')}
             >
                 вернуться к проверке дз
             </button>
@@ -99,7 +147,7 @@ function Group() {
                     <select
                         className="input-field"
                         value={selectedGroup}
-                        onChange={(e) => setSelectedGroup(e.target.value)}
+                        onChange={handleGroupSelect}
                     >
                         <option value="">Выберите группу</option>
                         {groups.map((group, index) => (
