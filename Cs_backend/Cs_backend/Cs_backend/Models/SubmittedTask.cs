@@ -15,7 +15,7 @@ public class SubmittedTask
     public int StatusId { get; set; }
     public TaskStatus Status { get; set; }
     public string HomeworkPrefix { get; set; }
-    public DateOnly SubmittedDate { get; set; }
+    public DateTime SubmittedDate { get; set; }
     public int Grade { get; set; }
     public string Comment { get; set; }
 

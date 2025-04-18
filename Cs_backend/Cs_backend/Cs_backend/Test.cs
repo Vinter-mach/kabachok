@@ -121,7 +121,7 @@ public class ApplicationContextTests(ITestOutputHelper testOutputHelper)
         {
             Topic = "Тервер 1",
             TaskLink = @"1\1\1",
-            Deadline = DateOnly.MaxValue,
+            Deadline = DateTime.Now,
             TeacherId = teacher.Id,
             IsGrave = false,
             CourseId = course1.Id,
@@ -130,7 +130,7 @@ public class ApplicationContextTests(ITestOutputHelper testOutputHelper)
         {
             Topic = "Матстат 1",
             TaskLink = @"2\1\1",
-            Deadline = DateOnly.MaxValue,
+            Deadline = DateTime.Now,
             TeacherId = teacher.Id,
             IsGrave = false,
             CourseId = course2.Id,
@@ -144,7 +144,7 @@ public class ApplicationContextTests(ITestOutputHelper testOutputHelper)
             TaskId = task1.Id,
             StatusId = 1,
             HomeworkPrefix = @"1/1/1",
-            SubmittedDate = DateOnly.MaxValue,
+            SubmittedDate = DateTime.Now,
             Grade = 0,
             Comment = "Abugaga"
         });
@@ -154,7 +154,7 @@ public class ApplicationContextTests(ITestOutputHelper testOutputHelper)
             TaskId = task2.Id,
             StatusId = 1,
             HomeworkPrefix = @"2/1/1",
-            SubmittedDate = DateOnly.MaxValue,
+            SubmittedDate = DateTime.Now,
             Grade = 0,
             Comment = "Abugaga"
         });

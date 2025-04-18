@@ -10,7 +10,7 @@ public class Task
 {
     public string Topic { get; set; }
     public string TaskLink { get; set; }
-    public DateOnly Deadline { get; set; }
+    public DateTime Deadline { get; set; }
     public int TeacherId { get; set; }
     public bool IsGrave { get; set; }
     public int CourseId { get; set; }

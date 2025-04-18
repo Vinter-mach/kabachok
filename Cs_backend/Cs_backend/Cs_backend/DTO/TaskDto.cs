@@ -8,7 +8,7 @@ public class TaskDto : ICastable<Task>
     public int TaskId { get; set; }
     public required string Name { get; set; }
     public required string TaskLink { get; set; }
-    public DateOnly Deadline { get; set; }
+    public DateTime Deadline { get; set; }
     public int TeacherId { get; set; }
     public bool IsGraves { get; set; }
 

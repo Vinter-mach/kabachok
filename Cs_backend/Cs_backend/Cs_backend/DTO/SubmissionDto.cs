@@ -10,7 +10,7 @@ public class SubmissionDto : ICastable<SubmittedTask>
     public int TaskId { get; set; }
     public int StatusId { get; set; }
     public string homeworkFile { get; set; }
-    public DateOnly Date { get; set; }
+    public DateTime Date { get; set; }
     public int Grade { get; set; }
     public string Comment { get; set; }
 
