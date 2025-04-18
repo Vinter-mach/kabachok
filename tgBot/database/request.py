@@ -1,3 +1,4 @@
+from datetime import date, datetime
 from sqlalchemy import select, desc
 from tgBot.database.connect import async_session
 from tgBot.database.models import Student, Course, Task, SubmittedTask
@@ -72,3 +73,30 @@ async def get_student_id_by_telegram_id(tg_id: int) -> int | None:
         )
         student_id = result.scalar()
         return student_id
+
+
+async def save_submission_to_db(student_id: int, task_id: int, prefix: str):
+    async with async_session() as session:
+        result = await session.execute(
+            select(SubmittedTask).where(
+                SubmittedTask.student_id == student_id,
+                SubmittedTask.task_id == task_id
+            )
+        )
+        existing = result.scalar_one_or_none()
+
+        if existing:
+            # Обновляем дату и путь (если хочешь)
+            existing.submitted_date = datetime.now()
+        else:
+            submission = SubmittedTask(
+                student_id=student_id,
+                task_id=task_id,
+                status_id=1, # 1 значит на проверке
+                homework_prefix=prefix,
+                submitted_date=date.today(),
+                grade=0,
+                comment=""
+            )
+            session.add(submission)
+            await session.commit()

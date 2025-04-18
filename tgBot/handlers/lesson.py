@@ -4,10 +4,11 @@ from aiogram.fsm.context import FSMContext
 from aiogram import Router, types, F
 from aiogram.types import ReplyKeyboardRemove
 from tgBot.database.request import get_last_submission_full, \
-    get_task_id_by_topic_name
+    get_task_id_by_topic_name, save_submission_to_db
 from tgBot.handlers.course import show_course_topics
 from tgBot.keyboards.reply import send_or_select_topic
 from tgBot.states.register import LessonSelect
+from tgBot.utils.auth import get_mask_for_save
 
 router = Router()
 album_cache: dict[str, list[types.Message]] = defaultdict(list)
@@ -45,12 +46,11 @@ async def print_task_information(message: types.Message, state: FSMContext):
     task = await get_last_submission_full(student_id, task_id)
     await message.answer(
         f"📄 Тема: пиздец\n"
-        f"🔗 Ссылка: {task.homework_link}\n"
-        f"📅 Дата: {task.submitted_date.strftime('%d.%m.%Y')}\n"
+        f"🔗 Ссылка: {task.homework_prefix}\n"
+        f"📅 Дата: {task.submitted_date.strftime('%d.%m.%Y %H:%M')}\n"
         f"📝 Оценка: {task.grade}\n"
         f"💬 Комментарий: {task.comment}"
     )
-
 
 
 @router.message(LessonSelect.after_topic, F.text == "Выбрать другую тему")
@@ -63,7 +63,7 @@ async def handle_reselect_topic(message: types.Message, state: FSMContext):
 
 @router.message(LessonSelect.after_topic, F.text == "Отправить задание")
 async def handle_send_homework(message: types.Message, state: FSMContext):
-    await message.answer("Отправь задание одним сообщением (до 5 файлов).",
+    await message.answer("Отправь задание одним сообщением",
                          reply_markup=ReplyKeyboardRemove())
     await state.set_state(LessonSelect.waiting_for_files)
 
@@ -87,43 +87,51 @@ async def handle_get_album(message: types.Message, state: FSMContext):
     # Только последнее сообщение обрабатывает
     if message.message_id != messages[-1].message_id:
         return
+
     is_uncorrected_files = False
-    saved_files = []
+    files = []
     for msg in messages:
         if msg.document:
             file_name = msg.document.file_name.lower()
             if file_name.endswith(".pdf") or file_name.endswith(".py"):
-                saved_files.append({
+                files.append({
                     "file_id": msg.document.file_id,
-                    "file_name": msg.document.file_name
+                    "original_file_name": msg.document.file_name,
+                    "mask_for_save": await get_mask_for_save(state)
                 })
             else:
                 is_uncorrected_files = True
                 break
-
     if is_uncorrected_files:
-        await message.answer("Ты отправил недопустимые файлы. Принимаются только .pdf и .py. Попробуй еще раз.")
+        await message.answer(
+            "Ты отправил недопустимые файлы. Принимаются только .pdf и .py. Попробуй еще раз.")
         return
 
-    await state.update_data(submitted_files=saved_files)
-    await print_task_information(message, state)
-    await message.answer("Что ты хочешь сделать дальше?",
-                         reply_markup=send_or_select_topic)
-    await state.set_state(LessonSelect.after_topic)
+    await after_accepting_files(files, message, state)
 
 
 @router.message(LessonSelect.waiting_for_files, F.document)
 async def handle_get_single_file(message: types.Message, state: FSMContext):
     file_name = message.document.file_name.lower()
     if not (file_name.endswith(".pdf") or file_name.endswith(".py")):
-        await message.answer("Ты отправил недопустимые файлы. Принимаются только .pdf и .py. Попробуй еще раз.")
+        await message.answer(
+            "Ты отправил недопустимые файл. Принимаются только .pdf и .py. Попробуй еще раз.")
         return
-    file_info = {
+    mask_prefix = await get_mask_for_save(state)
+    file = {
         "file_id": message.document.file_id,
-        "file_name": message.document.file_name
+        "original_file_name": message.document.file_name,
+        "mask_for_save": mask_prefix
     }
+    await after_accepting_files([file], message, state, mask_prefix)
 
-    await state.update_data(submitted_files=[file_info])
+
+async def after_accepting_files(files, message, state, mask_prefix):
+    data = await state.get_data()
+    student_id = data.get("student_id")
+    task_id = data.get("task_id")
+    await save_submission_to_db(student_id, task_id, mask_prefix)
+    await state.update_data(submitted_files=files)
     await print_task_information(message, state)
     await message.answer("Что ты хочешь сделать дальше?",
                          reply_markup=send_or_select_topic)
@@ -133,4 +141,3 @@ async def handle_get_single_file(message: types.Message, state: FSMContext):
 @router.message(LessonSelect.waiting_for_files)
 async def reject_non_files(message: types.Message):
     await message.answer("Пожалуйста, отправь файл формата .pdf или .py.")
-

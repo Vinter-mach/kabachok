@@ -1,5 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, Boolean, Numeric, \
-    ForeignKey, Index
+from sqlalchemy import Column, Integer, String, Date, Boolean, ForeignKey, Index
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
@@ -8,31 +7,29 @@ Base = declarative_base()
 class Group(Base):
     __tablename__ = "groups"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(50), nullable=False)
+    name = Column(String(256), nullable=False)
 
 
 class Course(Base):
     __tablename__ = "courses"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(50), nullable=False)
-    password_hash = Column(Numeric, nullable=False)
+    name = Column(String(256), nullable=False)
+    password_hash = Column(String(256), nullable=False)
 
 
 class Status(Base):
     __tablename__ = "statuses"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(50), nullable=False)
+    name = Column(String(256), nullable=False)
 
 
 class Student(Base):
     __tablename__ = "students"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    group_id = Column(Integer, ForeignKey("groups.id", ondelete="CASCADE"),
-                      nullable=False)
-    name = Column(String(50), nullable=False)
+    group_id = Column(Integer, ForeignKey("groups.id", ondelete="CASCADE"), nullable=False)
+    name = Column(String(256), nullable=False)
     telegram_id = Column(Integer, nullable=False)
-    course_id = Column(Integer, ForeignKey("courses.id", ondelete="CASCADE"),
-                       nullable=False)
+    course_id = Column(Integer, ForeignKey("courses.id", ondelete="CASCADE"), nullable=False)
 
     __table_args__ = (
         Index("IX_students_course_id", "course_id"),
@@ -43,13 +40,10 @@ class Student(Base):
 class SubmittedTask(Base):
     __tablename__ = "submitted_tasks"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    student_id = Column(Integer, ForeignKey("students.id", ondelete="CASCADE"),
-                        nullable=False)
-    task_id = Column(Integer, ForeignKey("tasks.id", ondelete="CASCADE"),
-                     nullable=False)
-    status_id = Column(Integer, ForeignKey("statuses.id", ondelete="CASCADE"),
-                       nullable=False)
-    homework_link = Column(String(250), nullable=False)
+    student_id = Column(Integer, ForeignKey("students.id", ondelete="CASCADE"), nullable=False)
+    task_id = Column(Integer, ForeignKey("tasks.id", ondelete="CASCADE"), nullable=False)
+    status_id = Column(Integer, ForeignKey("statuses.id", ondelete="CASCADE"), nullable=False)
+    homework_prefix = Column(String(256), nullable=False)  # renamed from homework_link
     submitted_date = Column(Date, nullable=False)
     grade = Column(Integer, nullable=False)
     comment = Column(String(1000), nullable=False)
@@ -64,32 +58,31 @@ class SubmittedTask(Base):
 class Task(Base):
     __tablename__ = "tasks"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    topic = Column(String(100), nullable=False)
-    task_link = Column(String(100), nullable=False)
+    topic = Column(String(256), nullable=False)
+    task_link = Column(String(256), nullable=False)
     deadline = Column(Date, nullable=False)
-    teacher = Column(String(100), nullable=False)
+    teacher_id = Column(Integer, ForeignKey("teachers.id", ondelete="CASCADE"), nullable=False)  # renamed from teacher
     is_grave = Column(Boolean, nullable=False)
-    course_id = Column(Integer, ForeignKey("courses.id", ondelete="CASCADE"),
-                       nullable=False)
+    course_id = Column(Integer, ForeignKey("courses.id", ondelete="CASCADE"), nullable=False)
 
     __table_args__ = (
         Index("IX_tasks_course_id", "course_id"),
+        Index("IX_tasks_teacher_id", "teacher_id"),
     )
 
 
 class Teacher(Base):
     __tablename__ = "teachers"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    login_hash = Column(Numeric, nullable=False)
-    password_hash = Column(Numeric, nullable=False)
+    login = Column(String(256), nullable=False)
+    name = Column(String(256), nullable=False)
+    password_hash = Column(String(256), nullable=False)
 
 
 class TeacherCourse(Base):
     __tablename__ = "teacher_courses"
-    teacher_id = Column(Integer, ForeignKey("teachers.id", ondelete="CASCADE"),
-                        primary_key=True)
-    course_id = Column(Integer, ForeignKey("courses.id", ondelete="CASCADE"),
-                       primary_key=True)
+    teacher_id = Column(Integer, ForeignKey("teachers.id", ondelete="CASCADE"), primary_key=True)
+    course_id = Column(Integer, ForeignKey("courses.id", ondelete="CASCADE"), primary_key=True)
 
     __table_args__ = (
         Index("IX_teacher_courses_course_id", "course_id"),
