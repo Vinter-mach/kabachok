@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import '../styles/Group.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ function Group() {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
 
-    const fetchGroups = async () => {
+    const fetchGroups = useCallback(async () => {
         try {
             const response = await fetch('http://localhost:5249/groups/', {
                 headers: {
@@ -27,11 +27,13 @@ function Group() {
         } catch (error) {
             console.error('Ошибка:', error);
         }
-    };
+    }, [token]);
 
     useEffect(() => {
-        fetchGroups();
-    }, [fetchGroups]);
+        if (token) {
+          fetchGroups();
+        }
+      }, [fetchGroups, token]);
 
     const handleGroupAdd = async () => {
         try {
@@ -51,6 +53,7 @@ function Group() {
             const newGroup = await response.json();
             setGroups([...groups, newGroup]);
             setGroupInput('');
+            fetchGroups();
             console.log('Группа добавлена:', newGroup);
         } catch (error) {
             console.error('Ошибка:', error);
