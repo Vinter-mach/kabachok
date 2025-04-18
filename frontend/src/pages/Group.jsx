@@ -11,27 +11,27 @@ function Group() {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
 
-    useEffect(() => {
-        const fetchGroups = async () => {
-            try {
-                const response = await fetch('http://localhost:5249/groups/', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                    },
-                });
-                if (!response.ok) {
-                    throw new Error('Ошибка при получении групп');
-                }
-                const data = await response.json();
-                setGroups(data);
-                console.log('Группы:', data);
-            } catch (error) {
-                console.error('Ошибка:', error);
+    const fetchGroups = async () => {
+        try {
+            const response = await fetch('http://localhost:5249/groups/', {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Ошибка при получении групп');
             }
-        };
+            const data = await response.json();
+            setGroups(data);
+            console.log('Группы:', data);
+        } catch (error) {
+            console.error('Ошибка:', error);
+        }
+    };
 
+    useEffect(() => {
         fetchGroups();
-    }, []);
+    }, [fetchGroups]);
 
     const handleGroupAdd = async () => {
         try {
