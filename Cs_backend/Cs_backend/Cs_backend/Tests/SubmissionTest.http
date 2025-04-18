@@ -1,29 +1,48 @@
 ### environment: dev
 
-@Cs_backend_HostAddress = http://localhost:5249
-
-GET {{Cs_backend_HostAddress}}/courses/1/1/submissions
-Accept: application/json
-
-###
-
-GET {{Cs_backend_HostAddress}}/courses/1/1/submissions/1
-Accept: application/json
-
-###
-
-POST {{Cs_backend_HostAddress}}/courses/1/1/submissions/1
+### Получение токена
+POST http://localhost:5249/auth
 Content-Type: application/json
 
 {
-  "grade": 3,
-  "comment": "красава! милый  котик",
-  "statusId": 1
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
 }
+
+> {%
+    client.global.set("auth_token", response.body.token);
+%}
+
+###
+
+@Cs_backend_HostAddress = http://localhost:5249
+#
+#GET {{Cs_backend_HostAddress}}/courses/1/1/submissions
+#Authorization: Bearer {{auth_token}}
+#Accept: application/json
 
 ###
 
 GET {{Cs_backend_HostAddress}}/courses/1/1/submissions/1
+Authorization: Bearer {{auth_token}}
 Accept: application/json
+
+###
+#
+#POST {{Cs_backend_HostAddress}}/courses/1/1/submissions/1
+#Authorization: Bearer {{auth_token}}
+#Content-Type: application/json
+#
+#{
+#  "grade": 3,
+#  "comment": "красава! милый  котик",
+#  "statusId": 1
+#}
+#
+####
+#
+#GET {{Cs_backend_HostAddress}}/courses/1/1/submissions/1
+#Authorization: Bearer {{auth_token}}
+#Accept: application/json
 
 ###

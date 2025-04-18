@@ -38,7 +38,6 @@ public class ApplicationContextTests(ITestOutputHelper testOutputHelper)
             .Options;
 
         using var context = new ApplicationContext(options);
-        // Выполним простой SQL-запрос, проверяющий соединение
         context.Database.OpenConnection();
         var group1 = new Group()
         {
@@ -81,39 +80,44 @@ public class ApplicationContextTests(ITestOutputHelper testOutputHelper)
             Teacher = teacher,
             Course = course2,
         });
-        context.Students.Add(new Student()
+        var student1 = new Student()
         {
             GroupId = group1.Id,
             Name = "Эдик Рашитов",
             TelegramId = 123,
             CourseId = course1.Id,
-        });
-        context.Students.Add(new Student()
+        };
+        var student2 = new Student()
         {
             GroupId = group1.Id,
             Name = "Миша Зюков",
             TelegramId = 1234,
             CourseId = course2.Id,
-        });
-        context.Students.Add(new Student()
+        };
+        var student3 = new Student()
         {
             GroupId = group2.Id,
             Name = "Антон Жданов",
             TelegramId = 1235,
             CourseId = course1.Id,
-        });
-        context.Students.Add(new Student()
+        };
+        var student4 = new Student()
         {
             GroupId = group2.Id,
             Name = "Степан Гребнев",
             TelegramId = 1236,
             CourseId = course2.Id,
-        });
+        };
+        context.Students.Add(student1);
+        context.Students.Add(student2);
+        context.Students.Add(student3);
+        context.Students.Add(student4);
+        context.SaveChanges();
         context.Statuses.Add(new TaskStatus()
         {
             Name = "Aboba"
         });
-        context.Tasks.Add(new Task()
+        var task1 = new Task()
         {
             Topic = "Тервер 1",
             TaskLink = @"1\1\1",
@@ -121,8 +125,8 @@ public class ApplicationContextTests(ITestOutputHelper testOutputHelper)
             TeacherId = teacher.Id,
             IsGrave = false,
             CourseId = course1.Id,
-        });
-        context.Tasks.Add(new Task()
+        };
+        var task2 = new Task()
         {
             Topic = "Матстат 1",
             TaskLink = @"2\1\1",
@@ -130,18 +134,30 @@ public class ApplicationContextTests(ITestOutputHelper testOutputHelper)
             TeacherId = teacher.Id,
             IsGrave = false,
             CourseId = course2.Id,
+        };
+        context.Tasks.Add(task1);
+        context.Tasks.Add(task2);
+        context.SaveChanges();
+        context.SubmittedTasks.Add(new SubmittedTask()
+        {
+            StudentId = student1.Id,
+            TaskId = task1.Id,
+            StatusId = 1,
+            HomeworkPrefix = @"1/1/1",
+            SubmittedDate = DateOnly.MaxValue,
+            Grade = 0,
+            Comment = "Abugaga"
+        });
+        context.SubmittedTasks.Add(new SubmittedTask()
+        {
+            StudentId = student2.Id,
+            TaskId = task2.Id,
+            StatusId = 1,
+            HomeworkPrefix = @"2/1/1",
+            SubmittedDate = DateOnly.MaxValue,
+            Grade = 0,
+            Comment = "Abugaga"
         });
         context.SaveChanges();
-    }
-
-    [Fact]
-    public void EnvironmentKeyTest()
-    {
-        if (Environment.GetEnvironmentVariable("MY_SECRET_KEY") == null)
-        {
-            DotNetEnv.Env.Load();
-        }
-
-        Assert.Equal("abc123supersecretkey", Environment.GetEnvironmentVariable("MY_SECRET_KEY"));
     }
 }

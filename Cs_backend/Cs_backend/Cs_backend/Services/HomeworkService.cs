@@ -22,7 +22,7 @@ public class HomeworkService(HomeworkRepository homeworkRepository)
             envVariables.backet, 
             envVariables.accessKey, 
             envVariables.secretKey, 
-            submission.HomeworkLink,
+            submission.HomeworkPrefix,
             DateTime.UtcNow.AddHours(1));
         return links.Select(link =>
         {

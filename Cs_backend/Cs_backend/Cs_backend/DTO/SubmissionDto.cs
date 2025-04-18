@@ -22,7 +22,7 @@ public class SubmissionDto : ICastable<SubmittedTask>
             StudentId = StudentId,
             TaskId = TaskId,
             StatusId = StatusId,
-            HomeworkLink = homeworkFile,
+            HomeworkPrefix = homeworkFile,
             SubmittedDate = Date,
             Grade = Grade,
             Comment = Comment

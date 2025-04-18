@@ -14,7 +14,7 @@ public class SubmittedTask
     public Task Task { get; set; }
     public int StatusId { get; set; }
     public TaskStatus Status { get; set; }
-    public string HomeworkLink { get; set; }
+    public string HomeworkPrefix { get; set; }
     public DateOnly SubmittedDate { get; set; }
     public int Grade { get; set; }
     public string Comment { get; set; }
@@ -27,7 +27,7 @@ public class SubmittedTask
             TaskId = TaskId,
             StudentId = StudentId,
             StatusId = StatusId,
-            homeworkFile = HomeworkLink,
+            homeworkFile = HomeworkPrefix,
             Date = SubmittedDate,
             Grade = Grade,
             Comment = Comment
@@ -41,7 +41,7 @@ public class SubmittedTasksConfiguration : IEntityTypeConfiguration<SubmittedTas
 
     public void Configure(EntityTypeBuilder<SubmittedTask> builder)
     {
-        builder.Property(x => x.HomeworkLink)
+        builder.Property(x => x.HomeworkPrefix)
             .IsRequired()
             .HasMaxLength(256);
         builder.Property(x => x.Comment)
