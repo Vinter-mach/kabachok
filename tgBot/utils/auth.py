@@ -52,4 +52,4 @@ async def get_mask_for_save(state: FSMContext) -> str:
     course_id = data["course_id"]
     task_id = data["task_id"]
     user_id = data["user_id"]
-    return f"{course_id}\\{task_id}\\{user_id}\\fl"
+    return f"{course_id}/{task_id}/{user_id}/fl_"

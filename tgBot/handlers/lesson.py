@@ -1,8 +1,11 @@
 import asyncio
 from collections import defaultdict
 from aiogram.fsm.context import FSMContext
-from aiogram import Router, types, F
-from aiogram.types import ReplyKeyboardRemove
+from aiogram import Router, types, F, Bot
+from aiogram.types import ReplyKeyboardRemove, InputMediaDocument, InputFile, \
+    BufferedInputFile
+
+from tgBot.YandexAPI.loader import upload_all_or_none, get_files_by_mask
 from tgBot.database.request import get_last_submission_full, \
     get_task_id_by_topic_name, save_submission_to_db, has_student_submitted, \
     get_task_info_by_id
@@ -36,7 +39,6 @@ async def handle_topic_selection(message: types.Message, state: FSMContext):
             await message.answer(
                 f"Ты еще не отправлял домашку по этой теме\n"
                 f"📚 Тема: {task.topic}\n"
-                f"🔗 Ссылка: {task.task_link}\n"
                 f"📅 Дедлайн: {task.deadline.strftime('%d.%m.%Y') if task.deadline else '—'}\n"
                 f"👤 Преподаватель: {task.teacher.name}"
             )
@@ -64,24 +66,39 @@ async def print_task_information(message: types.Message, state: FSMContext):
     grade = submission.grade
     sent_at = submission.submitted_date.strftime("%d.%m.%Y %H:%M")
 
-    if status_name == "Отправлено на проверку":
-        await message.answer(
-            f"📚 Тема: {topic}\n"
-            f"📅 Дедлайн: {deadline}\n"
-            f"👤 Преподаватель: {teacher_name}\n"
-            f"📌 Статус: {status_name}\n"
-            f"📨 Отправлено: {sent_at}"
+    text = (
+        f"📚 Тема: {topic}\n"
+        f"📅 Дедлайн: {deadline}\n"
+        f"👤 Преподаватель: {teacher_name}\n"
+        f"📌 Статус: {status_name}\n"
+        f"📨 Отправлено: {sent_at}\n"
+    )
+
+    if status_name != "Отправлено на проверку":
+        text += f"📝 Оценка: {grade}\n💬 Комментарий: {comment}"
+
+    prefix = submission.homework_prefix
+    files = await get_files_by_mask(prefix)
+    await send_files_with_caption(files, message.bot, message.chat.id, text)
+
+
+async def send_files_with_caption(
+        files: list[dict], bot: Bot, chat_id: int, caption: str):
+    await bot.send_message(chat_id=chat_id, text=caption)
+    media = []
+    for i, file in enumerate(files):
+        buffer = file["buffer"]
+        filename = file["filename"]
+
+        input_file = BufferedInputFile(
+            file=buffer.getvalue(),
+            filename=filename
         )
-    else:
-        await message.answer(
-            f"📚 Тема: {topic}\n"
-            f"📅 Дедлайн: {deadline}\n"
-            f"👤 Преподаватель: {teacher_name}\n"
-            f"📌 Статус: {status_name}\n"
-            f"📨 Отправлено: {sent_at}"
-            f"📝 Оценка: {grade}\n"
-            f"💬 Комментарий: {comment}\n"
-        )
+
+        media_doc = InputMediaDocument(media=input_file)
+        media.append(media_doc)
+
+    await bot.send_media_group(chat_id=chat_id, media=media)
 
 
 @router.message(LessonSelect.after_topic, F.text == "Выбрать другую тему")
@@ -121,6 +138,7 @@ async def handle_get_album(message: types.Message, state: FSMContext):
 
     is_uncorrected_files = False
     files = []
+    mask_prefix = await get_mask_for_save(state)
     for msg in messages:
         if msg.document:
             file_name = msg.document.file_name.lower()
@@ -128,7 +146,7 @@ async def handle_get_album(message: types.Message, state: FSMContext):
                 files.append({
                     "file_id": msg.document.file_id,
                     "original_file_name": msg.document.file_name,
-                    "mask_for_save": await get_mask_for_save(state)
+                    "mask_for_save": mask_prefix
                 })
             else:
                 is_uncorrected_files = True
@@ -138,7 +156,7 @@ async def handle_get_album(message: types.Message, state: FSMContext):
             "Ты отправил недопустимые файлы. Принимаются только .pdf и .py. Попробуй еще раз.")
         return
 
-    await after_accepting_files(files, message, state)
+    await after_accepting_files(files, message, state, mask_prefix)
 
 
 @router.message(LessonSelect.waiting_for_files, F.document)
@@ -161,12 +179,19 @@ async def after_accepting_files(files, message, state, mask_prefix):
     data = await state.get_data()
     student_id = data.get("student_id")
     task_id = data.get("task_id")
-    await save_submission_to_db(student_id, task_id, mask_prefix)
-    await state.update_data(submitted_files=files)
-    await print_task_information(message, state)
-    await message.answer("Что ты хочешь сделать дальше?",
-                         reply_markup=send_or_select_topic)
-    await state.set_state(LessonSelect.after_topic)
+    bot = message.bot
+    is_ok_load = await upload_all_or_none(files, bot)
+    if is_ok_load:
+        await save_submission_to_db(student_id, task_id, mask_prefix)
+        await state.update_data(submitted_files=files)
+        await print_task_information(message, state)
+        await message.answer("Что ты хочешь сделать дальше?",
+                             reply_markup=send_or_select_topic)
+        await state.set_state(LessonSelect.after_topic)
+    else:
+        await message.answer(
+            "Во время загрузки произошли неполадки, отправь файлы пожалуйста еще раз")
+        await state.set_state(LessonSelect.waiting_for_files)
 
 
 @router.message(LessonSelect.waiting_for_files)

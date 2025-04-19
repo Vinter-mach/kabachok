@@ -5,4 +5,4 @@ DATABASE_URL = "postgresql+asyncpg://postgres:postgres@localhost:5432/project"
 
 engine = create_async_engine(DATABASE_URL, echo=False)
 async_session = sessionmaker(
-    engine, class_=AsyncSession, expire_on_commit=False)
+    engine, class_=AsyncSession, expire_on_commit=True)
