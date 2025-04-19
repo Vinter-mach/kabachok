@@ -79,7 +79,10 @@ async def print_task_information(message: types.Message, state: FSMContext):
 
     prefix = submission.homework_prefix
     files = await get_files_by_mask(prefix)
-    await send_files_with_caption(files, message.bot, message.chat.id, text)
+    if files:
+        await send_files_with_caption(files, message.bot, message.chat.id, text)
+    else:
+        await message.answer("Технические неполадки, попробуй еще раз")
 
 
 async def send_files_with_caption(
