@@ -1,10 +1,8 @@
 from datetime import date, datetime
 from sqlalchemy import select, desc
 from sqlalchemy.orm import selectinload
-
 from tgBot.database.connect import async_session
-from tgBot.database.models import Student, Course, Task, SubmittedTask, Status, \
-    Teacher
+from tgBot.database.models import Student, Course, Task, SubmittedTask
 
 
 async def get_student_by_telegram_id(telegram_id: int) -> Student | None:

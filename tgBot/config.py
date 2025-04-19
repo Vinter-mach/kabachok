@@ -3,5 +3,6 @@ ACCESS_KEY = ""
 SECRET_KEY = ""
 ENDPOINT_URL = ""
 BUCKET_NAME = ""
+DATABASE_URL = ""
 
 

@@ -4,8 +4,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram import Router, types, F, Bot
 from aiogram.types import ReplyKeyboardRemove, InputMediaDocument, InputFile, \
     BufferedInputFile
-
-from tgBot.YandexAPI.loader import upload_all_or_none, get_files_by_mask
+from tgBot.yandexAPI.loader import upload_all_or_none, get_files_by_mask
 from tgBot.database.request import get_last_submission_full, \
     get_task_id_by_topic_name, save_submission_to_db, has_student_submitted, \
     get_task_info_by_id
@@ -37,7 +36,7 @@ async def handle_topic_selection(message: types.Message, state: FSMContext):
         task = await get_task_info_by_id(task_id)
         if task:
             await message.answer(
-                f"Ты еще не отправлял домашку по этой теме\n"
+                f"Ты еще не отправлял домашнее задание по этой теме\n"
                 f"📚 Тема: {task.topic}\n"
                 f"📅 Дедлайн: {task.deadline.strftime('%d.%m.%Y') if task.deadline else '—'}\n"
                 f"👤 Преподаватель: {task.teacher.name}"
@@ -53,6 +52,8 @@ async def handle_topic_selection(message: types.Message, state: FSMContext):
 
 
 async def print_task_information(message: types.Message, state: FSMContext):
+    await message.answer(
+        "Загрузка твоей работы, может занять некоторое время, подожди пожалуйста")
     data = await state.get_data()
     task_id = data["task_id"]
     student_id = data.get("student_id")
@@ -67,6 +68,7 @@ async def print_task_information(message: types.Message, state: FSMContext):
     sent_at = submission.submitted_date.strftime("%d.%m.%Y %H:%M")
 
     text = (
+        "Вот твоя работа\n"
         f"📚 Тема: {topic}\n"
         f"📅 Дедлайн: {deadline}\n"
         f"👤 Преподаватель: {teacher_name}\n"
