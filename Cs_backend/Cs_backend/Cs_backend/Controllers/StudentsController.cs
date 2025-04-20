@@ -18,7 +18,7 @@ public class StudentsController(StudentService studentService) : ControllerBase
     }
 
     [HttpPost("")]
-    public async Task<IActionResult> AddOrUpdateTask(int groupId, [FromBody] StudentDto dto)
+    public async Task<IActionResult> AddOrUpdateStudent(int groupId, [FromBody] StudentDto dto)
     {
         var student = dto.Cast();
         student.GroupId = groupId;

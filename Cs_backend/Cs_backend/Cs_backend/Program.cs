@@ -99,6 +99,7 @@ builder.Services.AddScoped<GroupService>();
 builder.Services.AddScoped<SubmissionService>();
 builder.Services.AddScoped<HomeworkService>();
 builder.Services.AddScoped<StudentService>();
+builder.Services.AddScoped<TeachersService>();
 builder.Services.AddScoped<AuthService>();
 
 builder.Services.AddScoped<IRepository<Course>, CourseRepository>();
@@ -107,6 +108,7 @@ builder.Services.AddScoped<TaskRepository>();
 builder.Services.AddScoped<SubmissionRepository>();
 builder.Services.AddScoped<HomeworkRepository>();
 builder.Services.AddScoped<StudentRepository>();
+builder.Services.AddScoped<TeachersRepository>();
 builder.Services.AddScoped<AuthRepository>();
 
 builder.Services.AddControllers()

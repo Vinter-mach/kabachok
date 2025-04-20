@@ -1,17 +1,27 @@
 using System.Numerics;
+using Cs_backend.DTO;
 using Cs_backend.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cs_backend.Models;
 
-public class Teacher : BaseModel
+public class Teacher : BaseModel, ICastable<TeacherDto>
 {
     public string Login { get; set; }
     public string Name { get; set; }
     public string PasswordHash { get; set; }
     public ICollection<TeacherCourse> TeacherCourses { get; set; }
     public ICollection<Task> Tasks { get; set; }
+    public TeacherDto Cast()
+    {
+        return new TeacherDto()
+        {
+            Login = Login,
+            Name = Name,
+            PasswordHash = PasswordHash,
+        };
+    }
 }
 
 public class TeacherConfiguration : IEntityTypeConfiguration<Teacher>
