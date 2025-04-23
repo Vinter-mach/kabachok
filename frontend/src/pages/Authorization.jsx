@@ -8,7 +8,6 @@ function Authorization() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    // обработка события
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
@@ -53,7 +52,7 @@ function Authorization() {
             <h2>Вход</h2>
             <form onSubmit={handleSubmit}>
                 <div className='form-group'>
-                    <label htmlFor='username'>Username:</label>
+                    <label htmlFor='username'>Почта</label>
                     <input
                         type='text'
                         id='username'
@@ -64,7 +63,7 @@ function Authorization() {
                         autoComplete="username"/>
                 </div>
                 <div className='form-group'>
-                    <label htmlFor='password'>Password:</label>
+                    <label htmlFor='password'>Пароль</label>
                     <input
                         type='password'
                         id='password'
