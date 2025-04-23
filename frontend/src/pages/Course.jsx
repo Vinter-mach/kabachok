@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useState, useEffect, useCallback} from 'react';
+import {useNavigate} from 'react-router-dom';
+import '../styles/Course.css';
 
 function SelectionPage() {
     const navigate = useNavigate();
@@ -30,9 +31,9 @@ function SelectionPage() {
 
     useEffect(() => {
         if (token) {
-          fetchCourses();
+            fetchCourses();
         }
-      }, [fetchCourses, token]);
+    }, [fetchCourses, token]);
 
     // Добавление нового варианта
     // const handleAddOption = () => {
@@ -45,12 +46,9 @@ function SelectionPage() {
     const handleAddOption = async () => {
         try {
             const response = await fetch('http://localhost:5249/courses/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({ name: newOption }),
+                method: 'POST', headers: {
+                    'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
+                }, body: JSON.stringify({name: newOption}),
             });
 
             if (!response.ok) {
@@ -70,61 +68,57 @@ function SelectionPage() {
     // Переход на следующую страницу
     const handleNavigate = () => {
         if (selectedOption) {
-            navigate('/group', { state: { selectedOption } });
+            navigate('/group', {state: {selectedOption}});
         }
     };
 
-    return (
-        <div className="selection-container">
-            <h2>Выбери или добавь курс</h2>
+    return (<div className="selection-container">
+        <h2>Выбери или добавь курс</h2>
 
-            <div className="form-group">
-                <label htmlFor="options">Курсы</label>
-                <select
-                    id="options"
-                    value={selectedOption}
-                    onChange={(e) => setSelectedOption(e.target.value)}
-                    className="form-control"
-                >
-                    <option value="">тыкни на меня</option>
-                    {options.map((option, index) => (
-                        <option key={index} value={option.name}>
-                            {option.name}
-                        </option>
-                    ))}
-                </select>
-            </div>
-
-            <div className="form-group">
-                <label htmlFor="newOption">Добавить новый курс</label>
-                <div className="input-group">
-                    <input
-                        type="text"
-                        id="newOption"
-                        value={newOption}
-                        onChange={(e) => setNewOption(e.target.value)}
-                        className="form-control"
-                        placeholder="Введите новый вариант"
-                    />
-                    <button
-                        onClick={handleAddOption}
-                        className="btn btn-add"
-                        disabled={!newOption.trim()}
-                    >
-                        Добавить
-                    </button>
-                </div>
-            </div>
-
-            <button
-                onClick={handleNavigate}
-                className="btn btn-primary"
-                disabled={!selectedOption}
+        <div className="form-group">
+            <label htmlFor="options">Курсы</label>
+            <select
+                id="options"
+                value={selectedOption}
+                onChange={(e) => setSelectedOption(e.target.value)}
+                className="form-control"
             >
-                Перейти далее
-            </button>
+                <option value="">тыкни на меня</option>
+                {options.map((option, index) => (<option key={index} value={option.name}>
+                    {option.name}
+                </option>))}
+            </select>
         </div>
-    );
+
+        <div className="form-group">
+            <label htmlFor="newOption">Добавить новый курс</label>
+            <div className="input-group">
+                <input
+                    type="text"
+                    id="newOption"
+                    value={newOption}
+                    onChange={(e) => setNewOption(e.target.value)}
+                    className="form-control"
+                    placeholder="Введите новый вариант"
+                />
+                <button
+                    onClick={handleAddOption}
+                    className="btn btn-add"
+                    disabled={!newOption.trim()}
+                >
+                    Добавить
+                </button>
+            </div>
+        </div>
+
+        <button
+            onClick={handleNavigate}
+            className="btn btn-primary"
+            disabled={!selectedOption}
+        >
+            Перейти далее
+        </button>
+    </div>);
 }
 
 export default SelectionPage;
