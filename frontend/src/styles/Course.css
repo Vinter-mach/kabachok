@@ -1,27 +1,49 @@
 .selection-container {
-    max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    font-family: Arial, sans-serif;
+    color: black;
+    text-align: center;
+    width: 70vh;
+    height: 70vh;
+    border-radius: 30px;
+    background-color: #d8c9eb;
+    overflow: hidden;
+}
+
+.selection-container h2 {
+    font-size: 30px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    display: block;
+    width: 60%;
+    margin: 50px auto;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .form-control {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+    border: 3px solid rgba(123, 0, 255, 0.26);
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #ffffff;
+    color: rgba(0, 0, 0, 0.63);
+    text-align: center;
 }
+
+.form-control:focus {
+    outline: none;
+}
+
+.form-control option {
+    outline: none;
+}
+
 
 .input-group {
     display: flex;
@@ -43,33 +65,34 @@
 }
 
 .btn-add {
-    background-color: #4CAF50;
+    background-color: rgba(140, 21, 205, 0.77);
     color: white;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
 
 .btn-add:hover {
-    background-color: #45a049;
+    background-color: #8c15cd;
 }
 
 .btn-add:disabled {
-    background-color: #cccccc;
+    background-color: rgba(173, 74, 228, 0.38);
     cursor: not-allowed;
 }
 
 .btn-primary {
-    background-color: #2196F3;
+    background-color: #8c15cd;
     color: white;
-    width: 100%;
-    margin-top: 10px;
+    width: 50%;
+    height: 50px;
+    margin-top: 20px;
 }
 
 .btn-primary:hover {
-    background-color: #0b7dda;
+    background-color: rgba(173, 74, 228, 0.38);
 }
 
 .btn-primary:disabled {
-    background-color: #cccccc;
+    background-color: rgba(173, 74, 228, 0.38);
     cursor: not-allowed;
 }
