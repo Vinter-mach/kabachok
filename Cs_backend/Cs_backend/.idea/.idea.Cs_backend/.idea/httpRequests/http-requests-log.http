@@ -1,3 +1,121 @@
+GET http://localhost:5249/courses/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ1NDk2ODYzLCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.7-soXiqqAvX6OFS--7ZzwdSVPCu9YcKUhn5BBK_m9TQ
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-24T161423-2.200.json
+
+###
+
+POST http://localhost:5249/courses/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ1NDk2ODYzLCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.7-soXiqqAvX6OFS--7ZzwdSVPCu9YcKUhn5BBK_m9TQ
+Content-Type: application/json
+Content-Length: 137
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "taskId": 3,
+  "name": "Test4",
+  "taskLink": "Test",
+  "deadline": "2025-04-24T14:30:00Z",
+  "teacher": "Test",
+  "isGraves": true
+}
+
+<> 2025-04-24T161423.500.txt
+
+###
+
+GET http://localhost:5249/courses/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ1NDk2ODYzLCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.7-soXiqqAvX6OFS--7ZzwdSVPCu9YcKUhn5BBK_m9TQ
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-24T161423-1.200.json
+
+###
+
+POST http://localhost:5249/auth
+Content-Type: application/json
+Content-Length: 65
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
+}
+
+<> 2025-04-24T161423.200.json
+
+###
+
+GET http://localhost:5249/courses/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ1NDk2NDgxLCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.tLYvHhNGZcRXzdPEhHl5Yr6hoPdtF6fANHdWrF5mbM4
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-24T160802.200.json
+
+###
+
+POST http://localhost:5249/courses/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ1NDk2NDgxLCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.tLYvHhNGZcRXzdPEhHl5Yr6hoPdtF6fANHdWrF5mbM4
+Content-Type: application/json
+Content-Length: 127
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "taskId": 3,
+  "name": "Test4",
+  "taskLink": "Test",
+  "deadline": "2019-08-24",
+  "teacher": "Test",
+  "isGraves": true
+}
+
+<> 2025-04-24T160802.500.txt
+
+###
+
+GET http://localhost:5249/courses/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ1NDk2NDgxLCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.tLYvHhNGZcRXzdPEhHl5Yr6hoPdtF6fANHdWrF5mbM4
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-24T160801-1.200.json
+
+###
+
+POST http://localhost:5249/auth
+Content-Type: application/json
+Content-Length: 65
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
+}
+
+<> 2025-04-24T160801.200.json
+
+###
+
 GET http://localhost:5249/courses/1/1/submissions
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ1NDk0ODY5LCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.HrkFHHTUA3EbJ4zr5aySzaX699HHOAs2dlTyaN6401A
 Accept: application/json
@@ -559,122 +677,6 @@ Accept-Encoding: br, deflate, gzip, x-gzip
 content-length: 0
 
 <> 2025-04-17T121727.200.json
-
-###
-
-GET http://localhost:5249/courses/1
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-17T121650-1.200.json
-
-###
-
-POST http://localhost:5249/courses/1
-Content-Type: application/json
-Content-Length: 127
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "taskId": 3,
-  "name": "Test3",
-  "taskLink": "Test",
-  "deadline": "2019-08-24",
-  "teacher": "Test",
-  "isGraves": true
-}
-
-<> 2025-04-17T121650.200.json
-
-###
-
-GET http://localhost:5249/courses/1
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-17T121649.200.json
-
-###
-
-GET http://localhost:5249/courses/1
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-14T165322.200.json
-
-###
-
-POST http://localhost:5249/courses/1
-Content-Type: application/json
-Content-Length: 127
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "taskId": 3,
-  "name": "Test3",
-  "taskLink": "Test",
-  "deadline": "2019-08-24",
-  "teacher": "Test",
-  "isGraves": true
-}
-
-<> 2025-04-14T165319.200.json
-
-###
-
-POST http://localhost:5249/courses/
-Content-Type: application/json
-Content-Length: 38
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "courseId": 1,
-  "name": "Test5"
-}
-
-<> 2025-04-14T165314.200.json
-
-###
-
-GET http://localhost:5249/courses/1
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-14T165011.200.json
-
-###
-
-POST http://localhost:5249/courses/1
-Content-Type: application/json
-Content-Length: 127
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "taskId": 3,
-  "name": "Test3",
-  "taskLink": "Test",
-  "deadline": "2019-08-24",
-  "teacher": "Test",
-  "isGraves": true
-}
-
-<> 2025-04-14T165011.500.txt
 
 ###
 
