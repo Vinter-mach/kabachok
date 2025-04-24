@@ -120,8 +120,8 @@ public class ApplicationContextTests(ITestOutputHelper testOutputHelper)
         var task1 = new Task()
         {
             Topic = "Тервер 1",
-            TaskLink = @"1\1\1",
-            Deadline = DateTime.Now,
+            TaskLink = @"1/1/827446065/fl_",
+            Deadline = DateTime.UtcNow,
             TeacherId = teacher.Id,
             IsGrave = false,
             CourseId = course1.Id,
@@ -130,7 +130,7 @@ public class ApplicationContextTests(ITestOutputHelper testOutputHelper)
         {
             Topic = "Матстат 1",
             TaskLink = @"2\1\1",
-            Deadline = DateTime.Now,
+            Deadline = DateTime.UtcNow,
             TeacherId = teacher.Id,
             IsGrave = false,
             CourseId = course2.Id,
@@ -143,8 +143,8 @@ public class ApplicationContextTests(ITestOutputHelper testOutputHelper)
             StudentId = student1.Id,
             TaskId = task1.Id,
             StatusId = 1,
-            HomeworkPrefix = @"1/1/1",
-            SubmittedDate = DateTime.Now,
+            HomeworkPrefix = @"1/1/827446065",
+            SubmittedDate = DateTime.UtcNow,
             Grade = 0,
             Comment = "Abugaga"
         });
@@ -154,7 +154,7 @@ public class ApplicationContextTests(ITestOutputHelper testOutputHelper)
             TaskId = task2.Id,
             StatusId = 1,
             HomeworkPrefix = @"2/1/1",
-            SubmittedDate = DateTime.Now,
+            SubmittedDate = DateTime.UtcNow,
             Grade = 0,
             Comment = "Abugaga"
         });
