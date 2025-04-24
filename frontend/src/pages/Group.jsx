@@ -12,6 +12,8 @@ function Group() {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const courseId = localStorage.getItem('courseId');
+    const taskId = localStorage.getItem('taskId');
+
 
     const fetchGroups = useCallback(async () => {
         try {

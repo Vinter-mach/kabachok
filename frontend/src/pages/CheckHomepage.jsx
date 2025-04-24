@@ -70,10 +70,10 @@ function CheckHomepage() {
         try {
             const topicData = {
                 taskId: 0, // обычно сервер сам генерирует ID
-                name: 'string',
+                name: topicName,
                 taskLink: 'string', // я не понял что это
-                deadline: '2019-08-24',
-                teacher: 1, // хз откуда это брать тоже
+                deadline: '2024-05-01T14:30:00Z',
+                teacherId: 1, // хз откуда это брать тоже
                 isGraves: false // пока что так
             };
 
@@ -110,6 +110,7 @@ function CheckHomepage() {
     const handleNavigate = () => {
         if (selectedTopic) {
             const topic = topics.find(topic => topic.name === selectedTopic);
+            localStorage.setItem('taskId', topic.taskId);
             navigate('/check', { state: { topicId: topic.taskId } });
         }
     };

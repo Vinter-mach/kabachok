@@ -13,6 +13,7 @@ function Authorization() {
         setError('');
 
         try {
+            console.log(username, password);
             const response = await fetch('http://localhost:5249/auth/', {
                 method: 'POST',
                 headers: {
