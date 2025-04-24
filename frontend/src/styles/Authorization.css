@@ -1,0 +1,56 @@
+.login-form {
+    margin: 0 auto;
+    padding: 20px;
+    color: black;
+    text-align: center;
+    width: 70vh;
+    height: 70vh;
+    border-radius: 30px;
+    background-color: #d8c9eb;
+    overflow: hidden;
+}
+
+.login-form h2 {
+    font-size: 50px;
+}
+
+.form-group {
+    display: block;
+    width: 60%;
+    margin: 40px auto;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    text-align: center;
+    height: 50px;
+    outline: none;
+    border: 3px solid rgba(123, 0, 255, 0.26);
+    background-color: white;
+    color: black;
+    font-palette: darkslate;
+    border-radius: 10px;
+}
+
+
+
+.login-button {
+    padding: 10px 15px;
+    background-color: #5358db;
+    color: white;
+    border: none;
+    width: 50%;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+/**сделай чтобы ошибка кнопку не двигала**/
+
