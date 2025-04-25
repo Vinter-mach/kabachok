@@ -1,3 +1,19 @@
+POST http://localhost:5249/auth
+Content-Type: application/json
+Content-Length: 65
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
+}
+
+<> 2025-04-24T185056.200.json
+
+###
+
 GET http://localhost:5249/courses/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ1NDk2ODYzLCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.7-soXiqqAvX6OFS--7ZzwdSVPCu9YcKUhn5BBK_m9TQ
 Accept: application/json
@@ -667,16 +683,6 @@ Accept: */*
 }
 
 <> 2025-04-17T121727-1.200.json
-
-###
-
-GET http://localhost:5249/courses/1
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-17T121727.200.json
 
 ###
 
