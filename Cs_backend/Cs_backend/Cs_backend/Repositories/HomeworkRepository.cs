@@ -21,7 +21,7 @@ public class HomeworkRepository(ApplicationContext applicationContext)
 
         existing.Comment = entity.Comment;
         existing.Grade = entity.Grade;
-        entity.Status = entity.Status;
+        existing.StatusId = entity.StatusId;
 
         await applicationContext.SaveChangesAsync();
     }
