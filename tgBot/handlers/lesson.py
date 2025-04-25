@@ -5,12 +5,12 @@ from aiogram import Router, types, F, Bot
 from aiogram.types import ReplyKeyboardRemove, InputMediaDocument, InputFile, \
     BufferedInputFile
 from tgBot.yandexAPI.loader import upload_all_or_none, get_files_by_mask
-from tgBot.database.request import get_last_submission_full, \
+from tgBot.database.request import get_last_verified_work, \
     get_task_id_by_topic_name, save_submission_to_db, has_student_submitted, \
-    get_task_info_by_id
+    get_task_info_by_id, get_last_work
 from tgBot.handlers.course import show_course_topics
 from tgBot.keyboards.reply import send_or_select_topic
-from tgBot.states.register import LessonSelect
+from tgBot.states.register import LessonSelect, GravesSelect
 from tgBot.utils.auth import get_mask_for_save
 
 router = Router()
@@ -31,6 +31,10 @@ async def handle_topic_selection(message: types.Message, state: FSMContext):
     task_id = await get_task_id_by_topic_name(topic_name, course_id)
     await state.update_data(task_id=task_id)
     await state.update_data(topic_name=topic_name)
+    if "is_graves" in data and data["is_graves"]:
+        await message.answer("Ты попал в тему гробов", reply_markup=ReplyKeyboardRemove())
+        await state.set_state(GravesSelect.waiting_for_topic)
+        return
     submitted_task = await has_student_submitted(student_id, task_id)
     if not submitted_task:
         task = await get_task_info_by_id(task_id)
@@ -57,18 +61,19 @@ async def print_task_information(message: types.Message, state: FSMContext):
     data = await state.get_data()
     task_id = data["task_id"]
     student_id = data.get("student_id")
-    submission = await get_last_submission_full(student_id, task_id)
+    last_work = await get_last_work(student_id, task_id)
+    last_verified_work = await get_last_verified_work(student_id, task_id)
 
-    topic = submission.task.topic
-    deadline = submission.task.deadline
-    teacher_name = submission.task.teacher.name
-    comment = submission.comment
-    status_name = submission.status.name
-    grade = submission.grade
-    sent_at = submission.submitted_date.strftime("%d.%m.%Y %H:%M")
+    topic = last_work.task.topic
+    deadline = last_work.task.deadline
+    teacher_name = last_work.task.teacher.name
+    comment = last_work.comment
+    status_name = last_work.status.name
+    grade = last_work.grade
+    sent_at = last_work.submitted_date.strftime("%d.%m.%Y %H:%M")
 
     text = (
-        "Вот твоя работа\n"
+        "Вот твоя последняя отправленная работа\n"
         f"📚 Тема: {topic}\n"
         f"📅 Дедлайн: {deadline}\n"
         f"👤 Преподаватель: {teacher_name}\n"
@@ -76,10 +81,13 @@ async def print_task_information(message: types.Message, state: FSMContext):
         f"📨 Отправлено: {sent_at}\n"
     )
 
-    if status_name != "Отправлено на проверку":
+    if status_name == "Проверено":
         text += f"📝 Оценка: {grade}\n💬 Комментарий: {comment}"
+    elif last_verified_work is not None:
+        text += (f"\nТвой предыдущая работа было оценена на {last_verified_work.grade}\n"
+                 f"С комментарием: {last_verified_work.comment}")
 
-    prefix = submission.homework_prefix
+    prefix = last_work.homework_prefix
     files = await get_files_by_mask(prefix)
     if files:
         await send_files_with_caption(files, message.bot, message.chat.id, text)

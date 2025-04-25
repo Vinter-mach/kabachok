@@ -20,3 +20,9 @@ class LessonSelect(StatesGroup):
     waiting_for_topic = State()
     after_topic = State()
     waiting_for_files = State()
+
+
+class GravesSelect(StatesGroup):
+    waiting_for_topic = State()
+    after_topic = State()
+    waiting_for_files = State()

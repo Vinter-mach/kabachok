@@ -76,6 +76,7 @@ async def get_task_id_by_topic_name(topic_name: str,
         return task_id
 
 
+
 async def get_student_id_by_telegram_id(tg_id: int) -> int | None:
     async with async_session() as session:
         result = await session.execute(
@@ -112,8 +113,8 @@ async def save_submission_to_db(student_id: int, task_id: int, prefix: str):
         await session.commit()
 
 
-async def get_last_submission_full(student_id: int,
-                                   task_id: int) -> SubmittedTask | None:
+async def get_last_work(student_id: int,
+                        task_id: int) -> SubmittedTask | None:
     async with async_session() as session:
         result = await session.execute(
             select(SubmittedTask)
@@ -126,6 +127,23 @@ async def get_last_submission_full(student_id: int,
             )
             .where(SubmittedTask.student_id == student_id,
                    SubmittedTask.task_id == task_id)
+            .order_by(desc(SubmittedTask.submitted_date))
+            .limit(1)
+        )
+        return result.scalars().first()
+
+async def get_last_verified_work(student_id: int,
+                                 task_id: int) -> SubmittedTask | None:
+    async with async_session() as session:
+        result = await session.execute(
+            select(SubmittedTask)
+            .options(
+                selectinload(SubmittedTask.task)
+                .selectinload(Task.teacher),
+                selectinload(SubmittedTask.status),
+            )
+            .where(SubmittedTask.student_id == student_id,
+                   SubmittedTask.task_id == task_id, SubmittedTask.status.has(name="Проверено"))
             .order_by(desc(SubmittedTask.submitted_date))
             .limit(1)
         )

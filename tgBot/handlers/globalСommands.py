@@ -15,7 +15,8 @@ async def cmd_help(message: types.Message):
     await message.answer(
         "/help - помощь\n"
         "/choose_course - выбрать курс\n"
-        "/get_lesson - посмотреть темы домашних заданий"
+        "/get_lesson - посмотреть темы домашних заданий\n"
+        "/get_graves - посмотреть гробы"
     )
 
 
@@ -30,6 +31,9 @@ async def cmd_help(message: types.Message):
 @router.message(Command("get_lesson"))
 async def get_lesson(message: types.Message, state: FSMContext):
     data = await state.get_data()
+    if "is_graves" in data:
+        data["is_graves"] = False
+        print(data["is_graves"])
     if "course_id" not in data:
         courses = await get_available_courses_for_student(message.from_user.id)
 
@@ -56,7 +60,8 @@ async def get_my_course(message: types.Message, state: FSMContext):
     courses = await get_available_courses_for_student(message.from_user.id)
 
     if not courses:
-        await message.answer("У тебя пока нет доступных курсов. Обратись к преподавателю.")
+        await message.answer(
+            "У тебя пока нет доступных курсов. Обратись к преподавателю.")
         return
 
     course_map = {course.name: course.id for course in courses}
@@ -67,3 +72,10 @@ async def get_my_course(message: types.Message, state: FSMContext):
 
     await message.answer("Вот твои доступные курсы", reply_markup=kb)
     await state.set_state(CourseSelect.waiting_for_course)
+
+
+@router.message(Command("get_graves"))
+async def get_graves(message: types.Message, state: FSMContext):
+    pass
+    #await state.update_data(is_graves=True)
+    #await get_lesson(message, state)
