@@ -81,11 +81,12 @@ async def print_task_information(message: types.Message, state: FSMContext):
         f"📨 Отправлено: {sent_at}\n"
     )
 
+    print(last_verified_work)
     if status_name == "Проверено":
         text += f"📝 Оценка: {grade}\n💬 Комментарий: {comment}"
-    elif last_verified_work is not None:
-        text += (f"\nТвой предыдущая работа было оценена на {last_verified_work.grade}\n"
-                 f"С комментарием: {last_verified_work.comment}")
+    elif grade != 0:
+        text += (f"\nТвой предыдущая работа было оценена на {grade}\n"
+                 f"С комментарием: {comment}")
 
     prefix = last_work.homework_prefix
     files = await get_files_by_mask(prefix)

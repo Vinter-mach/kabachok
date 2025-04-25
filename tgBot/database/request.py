@@ -99,6 +99,7 @@ async def save_submission_to_db(student_id: int, task_id: int, prefix: str):
         if existing:
             # Обновляем дату и путь (если хочешь)
             existing.submitted_date = datetime.now()
+            existing.status_id = 1
         else:
             submission = SubmittedTask(
                 student_id=student_id,
@@ -143,7 +144,7 @@ async def get_last_verified_work(student_id: int,
                 selectinload(SubmittedTask.status),
             )
             .where(SubmittedTask.student_id == student_id,
-                   SubmittedTask.task_id == task_id, SubmittedTask.status.has(name="Проверено"))
+                   SubmittedTask.task_id == task_id, SubmittedTask.status_id == 2)
             .order_by(desc(SubmittedTask.submitted_date))
             .limit(1)
         )
