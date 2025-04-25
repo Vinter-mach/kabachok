@@ -1,3 +1,37 @@
+POST http://localhost:5249/courses/1/1/submissions/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ1NTkxMjM2LCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.1toDhzVEU1_YKblxDKJ8fgprNxxVxaTo-lGzN5dikk8
+Content-Type: application/json
+Content-Length: 88
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "grade": 3,
+  "comment": "красава! милый  котик",
+  "statusId": 1
+}
+
+<> 2025-04-25T182719.400.json
+
+###
+
+POST http://localhost:5249/auth
+Content-Type: application/json
+Content-Length: 65
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
+}
+
+<> 2025-04-25T182717.200.json
+
+###
+
 POST http://localhost:5249/auth
 Content-Type: application/json
 Content-Length: 65
@@ -653,36 +687,6 @@ Accept-Encoding: br, deflate, gzip, x-gzip
 content-length: 0
 
 <> 2025-04-17T205012.200.json
-
-###
-
-GET http://localhost:5249/courses/1
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-17T121727-2.200.json
-
-###
-
-POST http://localhost:5249/courses/1
-Content-Type: application/json
-Content-Length: 127
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "taskId": 3,
-  "name": "Test4",
-  "taskLink": "Test",
-  "deadline": "2019-08-24",
-  "teacher": "Test",
-  "isGraves": true
-}
-
-<> 2025-04-17T121727-1.200.json
 
 ###
 
