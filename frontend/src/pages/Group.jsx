@@ -79,9 +79,7 @@ function Group() {
 
         try {
             const studentData = {
-                studentId: 0, // обычно сервер сам генерирует ID
                 name: studentName,
-                groupId: selectedGroupId,
                 tgUserName: telegramTag,
                 courseId: courseId
             };
