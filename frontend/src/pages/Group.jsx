@@ -80,7 +80,7 @@ function Group() {
         try {
             const studentData = {
                 name: studentName,
-                tgUserName: telegramTag,
+                tgId: telegramTag,
                 courseId: courseId
             };
 
