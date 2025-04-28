@@ -24,7 +24,7 @@ const CheckPage = () => {
     // Запрос списка групп
     const fetchGroups = useCallback(async () => {
         try {
-            const response = await fetch('http://localhost:5249/groups', {
+            const response = await fetch('http://130.193.59.231:5249/groups', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (!response.ok) throw new Error('Ошибка загрузки групп');
@@ -38,7 +38,7 @@ const CheckPage = () => {
     const fetchSubmissions = useCallback(async () => {
         try {
             const response = await fetch(
-                `http://localhost:5249/courses/${courseId}/${topicId}/submissions`,
+                `http://130.193.59.231:5249/courses/${courseId}/${topicId}/submissions`,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
             if (!response.ok) throw new Error('Ошибка загрузки работ');
@@ -53,7 +53,7 @@ const CheckPage = () => {
         try {
             console.log(groupId)
             const response = await fetch(
-                `http://localhost:5249/groups/${groupId}`,
+                `http://130.193.59.231:5249/groups/${groupId}`,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
             if (!response.ok) throw new Error('Ошибка загрузки студентов');
@@ -93,7 +93,7 @@ const CheckPage = () => {
 
         try {
             const response = await fetch(
-                `http://localhost:5249/courses/${courseId}/${topicId}/submissions/${selectedStudent.submission.submissionId}`,
+                `http://130.193.59.231:5249/courses/${courseId}/${topicId}/submissions/${selectedStudent.submission.submissionId}`,
                 {
                     method: 'POST',
                     headers: {
@@ -142,7 +142,7 @@ const CheckPage = () => {
 
         try {
             const response = await fetch(
-                `http://localhost:5249/courses/${courseId}/${topicId}/submissions/${submission.submissionId}`,
+                `http://130.193.59.231:5249/courses/${courseId}/${topicId}/submissions/${submission.submissionId}`,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
 

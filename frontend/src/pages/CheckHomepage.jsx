@@ -14,7 +14,7 @@ function CheckHomepage() {
 
     const fetchTopics = useCallback(async () => {
         try {
-            const response = await fetch(`http://localhost:5249/courses/${courseId}/`, {
+            const response = await fetch(`http://130.193.59.231:5249/courses/${courseId}/`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -38,7 +38,7 @@ function CheckHomepage() {
 
     const handleTopicAdd = async () => {
         try {
-            const response = await fetch(`http://localhost:5249/courses/${courseId}/`, {
+            const response = await fetch(`http://130.193.59.231:5249/courses/${courseId}/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ function CheckHomepage() {
                 isGraves: false // пока что так
             };
 
-            const response = await fetch(`http://localhost:5249/courses/${courseId}`, {
+            const response = await fetch(`http://130.193.59.231:5249/courses/${courseId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

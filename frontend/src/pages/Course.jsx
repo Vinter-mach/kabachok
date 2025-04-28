@@ -13,7 +13,7 @@ function SelectionPage() {
 
     const fetchCourses = useCallback(async () => {
         try {
-            const response = await fetch('http://localhost:5249/courses/', {
+            const response = await fetch('http://130.193.59.231:5249/courses/', {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -45,7 +45,7 @@ function SelectionPage() {
 
     const handleAddOption = async () => {
         try {
-            const response = await fetch('http://localhost:5249/courses/', {
+            const response = await fetch('http://130.193.59.231:5249/courses/', {
                 method: 'POST', headers: {
                     'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
                 }, body: JSON.stringify({name: newOption}),

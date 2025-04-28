@@ -14,7 +14,7 @@ function Authorization() {
 
         try {
             console.log(username, password);
-            const response = await fetch('http://localhost:5249/auth/', {
+            const response = await fetch('http://130.193.59.231:5249/auth/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

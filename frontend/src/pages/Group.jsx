@@ -17,7 +17,7 @@ function Group() {
 
     const fetchGroups = useCallback(async () => {
         try {
-            const response = await fetch('http://localhost:5249/groups/', {
+            const response = await fetch('http://130.193.59.231:5249/groups/', {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -41,7 +41,7 @@ function Group() {
 
     const handleGroupAdd = async () => {
         try {
-            const response = await fetch('http://localhost:5249/groups/', {
+            const response = await fetch('http://130.193.59.231:5249/groups/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ function Group() {
                 courseId: courseId
             };
 
-            const response = await fetch(`http://localhost:5249/groups/${selectedGroupId}`, {
+            const response = await fetch(`http://130.193.59.231:5249/groups/${selectedGroupId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
