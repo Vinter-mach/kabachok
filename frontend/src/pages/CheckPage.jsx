@@ -80,7 +80,7 @@ const CheckPage = () => {
 
     // Получение данных студента из submissions
     const getStudentSubmission = (studentId) => {
-        return submissions.find(sub =>
+        return submissions[0].find(sub =>
             sub.studentId === studentId && sub.taskId === parseInt(topicId)
         );
     };
