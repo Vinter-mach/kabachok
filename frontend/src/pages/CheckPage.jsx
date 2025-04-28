@@ -42,7 +42,9 @@ const CheckPage = () => {
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
             if (!response.ok) throw new Error('Ошибка загрузки работ');
-            setSubmissions(await response.json());
+            const data = await response.json();
+            // Преобразуем массив массивов в плоский массив
+            setSubmissions(data.flat());
         } catch (error) {
             console.error(error);
         }
@@ -80,7 +82,7 @@ const CheckPage = () => {
 
     // Получение данных студента из submissions
     const getStudentSubmission = (studentId) => {
-        return submissions[0].find(sub =>
+        return submissions.find(sub =>
             sub.studentId === studentId && sub.taskId === parseInt(topicId)
         );
     };
