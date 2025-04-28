@@ -103,7 +103,7 @@ const CheckPage = () => {
                     body: JSON.stringify({
                         grade: Number(rating),
                         comment,
-                        statusId: 1,
+                        statusId: 2,
                         homeworkFile: 'aa'
                     })
                 }
@@ -120,7 +120,7 @@ const CheckPage = () => {
                         ...sub,
                         grade: Number(rating),
                         comment,
-                        statusId: 1
+                        statusId: 2
                     }
                     : sub
             );
