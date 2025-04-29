@@ -132,20 +132,3 @@ async def get_last_work(student_id: int,
             .limit(1)
         )
         return result.scalars().first()
-
-async def get_last_verified_work(student_id: int,
-                                 task_id: int) -> SubmittedTask | None:
-    async with async_session() as session:
-        result = await session.execute(
-            select(SubmittedTask)
-            .options(
-                selectinload(SubmittedTask.task)
-                .selectinload(Task.teacher),
-                selectinload(SubmittedTask.status),
-            )
-            .where(SubmittedTask.student_id == student_id,
-                   SubmittedTask.task_id == task_id, SubmittedTask.status_id == 2)
-            .order_by(desc(SubmittedTask.submitted_date))
-            .limit(1)
-        )
-        return result.scalars().first()

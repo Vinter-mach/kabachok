@@ -5,8 +5,7 @@ from aiogram import Router, types, F, Bot
 from aiogram.types import ReplyKeyboardRemove, InputMediaDocument, InputFile, \
     BufferedInputFile
 from tgBot.yandexAPI.loader import upload_all_or_none, get_files_by_mask
-from tgBot.database.request import get_last_verified_work, \
-    get_task_id_by_topic_name, save_submission_to_db, has_student_submitted, \
+from tgBot.database.request import get_task_id_by_topic_name, save_submission_to_db, has_student_submitted, \
     get_task_info_by_id, get_last_work
 from tgBot.handlers.course import show_course_topics
 from tgBot.keyboards.reply import send_or_select_topic
@@ -62,7 +61,6 @@ async def print_task_information(message: types.Message, state: FSMContext):
     task_id = data["task_id"]
     student_id = data.get("student_id")
     last_work = await get_last_work(student_id, task_id)
-    last_verified_work = await get_last_verified_work(student_id, task_id)
 
     topic = last_work.task.topic
     deadline = last_work.task.deadline
@@ -81,7 +79,6 @@ async def print_task_information(message: types.Message, state: FSMContext):
         f"📨 Отправлено: {sent_at}\n"
     )
 
-    print(last_verified_work)
     if status_name == "Проверено":
         text += f"📝 Оценка: {grade}\n💬 Комментарий: {comment}"
     elif grade != 0:
