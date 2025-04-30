@@ -18,12 +18,17 @@ public class HomeworkService(HomeworkRepository homeworkRepository)
     public async Task<List<SubmissionDto>> GetSubmissionBySubmissionId(int submissionId)
     {
         var submission = await homeworkRepository.GetByIdAsync(submissionId);
+        if (submission is null)
+        {
+            return [];
+        }
+
         var envVariables = CloudFileGetter.GetEnvironmentVariables();
         var links = await CloudFileGetter.GetTemporaryLinks(
-            envVariables.endpoint, 
-            envVariables.backet, 
-            envVariables.accessKey, 
-            envVariables.secretKey, 
+            envVariables.endpoint,
+            envVariables.backet,
+            envVariables.accessKey,
+            envVariables.secretKey,
             submission.HomeworkPrefix,
             DateTime.UtcNow.AddHours(1));
         return links.Select(link =>

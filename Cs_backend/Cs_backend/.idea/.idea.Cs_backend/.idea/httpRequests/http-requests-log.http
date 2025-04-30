@@ -1,3 +1,213 @@
+POST http://localhost:5249/auth
+Content-Type: application/json
+Content-Length: 65
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
+}
+
+<> 2025-04-30T162856.200.json
+
+###
+
+GET http://localhost:5249/courses/100
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ2MDE2MDk4LCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.bMWKdaWcSeAisuyZKEN5Kv3w8Qze1yA1g4fXzf1DPdc
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-30T162819.200.json
+
+###
+
+POST http://localhost:5249/auth
+Content-Type: application/json
+Content-Length: 65
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
+}
+
+<> 2025-04-30T162818.200.json
+
+###
+
+POST http://localhost:5249/auth
+Content-Type: application/json
+Content-Length: 65
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
+}
+
+<> 2025-04-30T162403.200.json
+
+###
+
+GET http://localhost:5249/courses/100/100/submissions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ2MDE1ODE0LCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.uU8YqRpYLhqrAT9mIQy0zylKT_IOOei7q6j0SheSplA
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-30T162335.200.json
+
+###
+
+POST http://localhost:5249/auth
+Content-Type: application/json
+Content-Length: 65
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
+}
+
+<> 2025-04-30T162334.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions/100
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ2MDE1NjQ0LCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.EPpZCpNB_ylKQzCP3yHQ8HFwZtfncycn_boYZ8tHxac
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-30T162045.200.json
+
+###
+
+POST http://localhost:5249/auth
+Content-Type: application/json
+Content-Length: 65
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
+}
+
+<> 2025-04-30T162044.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions/100
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ2MDE1NTE0LCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.XqX-xnVfRV3UmfD5NPPoHEo388ngbnGOFY-MZlUQqT0
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-30T161841.500.txt
+
+###
+
+POST http://localhost:5249/auth
+Content-Type: application/json
+Content-Length: 65
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
+}
+
+<> 2025-04-30T161834.200.json
+
+###
+
+POST http://localhost:5249/auth
+Content-Type: application/json
+Content-Length: 65
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
+}
+
+<> 2025-04-30T161705.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions/100
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ2MDE1MzUwLCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.K2R8ClK4WbqZfvZGiimYtChiPBlbq3lcfD55b0BoeU4
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-30T161550.500.txt
+
+###
+
+POST http://localhost:5249/auth
+Content-Type: application/json
+Content-Length: 65
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
+}
+
+<> 2025-04-30T161550.200.json
+
+###
+
+GET http://localhost:5249/courses/1/1/submissions/100
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ2MDE1MzA5LCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.joGeCNEK6pata92jaIUu40pgZmrcprijuMLOBk84-LI
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-04-30T161517.500.txt
+
+###
+
+POST http://localhost:5249/auth
+Content-Type: application/json
+Content-Length: 65
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "userName": "volkova@gmail.com",
+  "password": "Volkova123"
+}
+
+<> 2025-04-30T161509.200.json
+
+###
+
 POST http://localhost:5249/courses/1/1/submissions/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ1NTkxMjM2LCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.1toDhzVEU1_YKblxDKJ8fgprNxxVxaTo-lGzN5dikk8
 Content-Type: application/json
@@ -499,194 +709,6 @@ Accept: */*
 }
 
 <> 2025-04-18T124020.401.json
-
-###
-
-POST http://localhost:5249/auth
-Content-Type: application/json
-Content-Length: 65
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "userName": "volkova@gmail.com",
-  "password": "Volkova123"
-}
-
-<> 2025-04-18T123816.200.json
-
-###
-
-POST http://localhost:5249/auth
-Content-Type: application/json
-Content-Length: 65
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "userName": "volkova@gmail.com",
-  "password": "Volkova123"
-}
-
-<> 2025-04-18T123444.200.json
-
-###
-
-GET http://localhost:5249/courses/1/1/submissions/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ0OTY1MjM3LCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.UmuvmdahqUstS5HTwJfPgwpuAkEojTYvjC18KLgBs40
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-18T123400.200.json
-
-###
-
-POST http://localhost:5249/auth
-Content-Type: application/json
-Content-Length: 65
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "userName": "volkova@gmail.com",
-  "password": "Volkova123"
-}
-
-<> 2025-04-18T123358.200.json
-
-###
-
-GET http://localhost:5249/courses/1/1/submissions/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzQ0OTYzODgwLCJpc3MiOiJBcGlCYWNrZW5kIiwiYXVkIjoiVm9sa292YSJ9.UZcoG_wv6Z5ByqO1PxtZYsXSytLx9P1jZ7_rWod1YLs
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-18T121121.500.txt
-
-###
-
-POST http://localhost:5249/auth
-Content-Type: application/json
-Content-Length: 65
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "userName": "volkova@gmail.com",
-  "password": "Volkova123"
-}
-
-<> 2025-04-18T121120.200.json
-
-###
-
-POST http://localhost:5249/auth
-Content-Type: application/json
-Content-Length: 65
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "userName": "volkova@gmail.com",
-  "password": "Volkova123"
-}
-
-<> 2025-04-18T120834.200.json
-
-###
-
-POST http://localhost:5249/auth
-Content-Type: application/json
-Content-Length: 115
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "userName": "volkova@gmail.com",
-  "password": "$2a$11$idMtnmRVsoB6EZjfe6Crk.aZpW949JN9c0gegB2IkjQpr4pKeJAVK"
-}
-
-<> 2025-04-18T120320.401.json
-
-###
-
-GET http://localhost:5249/courses/1/1/submissions/1
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-18T115015.498.json
-
-###
-
-GET http://localhost:5249/courses/1/1/submissions/1
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-18T114820.500.txt
-
-###
-
-GET http://localhost:5249/courses/1/1/submissions/1
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-17T205247.500.txt
-
-###
-
-GET http://localhost:5249/courses/1/1/submissions/1
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-17T205210.500.txt
-
-###
-
-GET http://localhost:5249/courses/1/1/submissions/1
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-17T205017.500.txt
-
-###
-
-GET http://localhost:5249/courses/1/1/submissions/1
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-17T205013.500.txt
-
-###
-
-GET http://localhost:5249/courses/1/1/submissions
-Accept: application/json
-User-Agent: IntelliJ HTTP Client/JetBrains Rider 2024.2.5
-Accept-Encoding: br, deflate, gzip, x-gzip
-content-length: 0
-
-<> 2025-04-17T205012.200.json
 
 ###
 

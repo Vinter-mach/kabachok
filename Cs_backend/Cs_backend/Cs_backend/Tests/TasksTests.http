@@ -17,29 +17,29 @@ Content-Type: application/json
 
 @Cs_backend_HostAddress = http://localhost:5249
 
-GET {{Cs_backend_HostAddress}}/courses/1
+GET {{Cs_backend_HostAddress}}/courses/100
 Authorization: Bearer {{auth_token}}
 Accept: application/json
 
-###
-
-POST {{Cs_backend_HostAddress}}/courses/1
-Authorization: Bearer {{auth_token}}
-Content-Type: application/json
-
-{
-  "taskId": 3,
-  "name": "Test4",
-  "taskLink": "Test",
-  "deadline": "2025-04-24T14:30:00Z",
-  "teacher": "Test",
-  "isGraves": true
-}
-
-###
-
-GET {{Cs_backend_HostAddress}}/courses/1
-Authorization: Bearer {{auth_token}}
-Accept: application/json
-
-###
+####
+#
+#POST {{Cs_backend_HostAddress}}/courses/1
+#Authorization: Bearer {{auth_token}}
+#Content-Type: application/json
+#
+#{
+#  "taskId": 3,
+#  "name": "Test4",
+#  "taskLink": "Test",
+#  "deadline": "2025-04-24T14:30:00Z",
+#  "teacher": "Test",
+#  "isGraves": true
+#}
+#
+####
+#
+#GET {{Cs_backend_HostAddress}}/courses/1
+#Authorization: Bearer {{auth_token}}
+#Accept: application/json
+#
+####
