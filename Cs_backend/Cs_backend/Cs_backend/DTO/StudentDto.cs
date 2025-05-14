@@ -10,7 +10,7 @@ public class StudentDto : ICastable<Student>
     
     public required int CourseId { get; set; }
     public int GroupId { get; set; }
-    public int TgId { get; set; }
+    public long TgId { get; set; }
 
     public string TgUserName { get; set; }
 
