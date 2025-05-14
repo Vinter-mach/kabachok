@@ -11,7 +11,7 @@ public class Student
     public int GroupId { get; set; }
     public Group Group { get; set; }
     public string Name { get; set; }
-    public int TelegramId { get; set; }
+    public long TelegramId { get; set; }
     public int CourseId { get; set; }
     public Course Course { get; set; }
     public ICollection<SubmittedTask> SubmittedTasks { get; set; }

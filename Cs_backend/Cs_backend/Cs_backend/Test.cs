@@ -67,7 +67,7 @@ public class ApplicationContextTests(ITestOutputHelper testOutputHelper)
             PasswordHash = "$2a$11$idMtnmRVsoB6EZjfe6Crk.aZpW949JN9c0gegB2IkjQpr4pKeJAVK",
             Name = "Саша",
         };
-        
+
         context.Teachers.Add(teacher);
         context.SaveChanges();
         context.TeacherCourses.Add(new TeacherCourse()
