@@ -20,7 +20,7 @@ public class HomeworkService(HomeworkRepository homeworkRepository)
         var submission = await homeworkRepository.GetByIdAsync(submissionId);
         if (submission is null)
         {
-            return [];
+            return new List<SubmissionDto>();
         }
 
         var envVariables = CloudFileGetter.GetEnvironmentVariables();
