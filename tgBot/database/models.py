@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Date, Boolean, ForeignKey, \
-    Index, DateTime
+    Index, DateTime, BigInteger
 from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
@@ -29,7 +29,7 @@ class Status(Base):
 class Student(Base):
     __tablename__ = "students"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    group_id = Column(Integer, ForeignKey("groups.id", ondelete="CASCADE"),
+    group_id = Column(BigInteger, ForeignKey("groups.id", ondelete="CASCADE"),
                       nullable=False)
     name = Column(String(256), nullable=False)
     telegram_id = Column(Integer, nullable=False)
